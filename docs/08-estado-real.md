@@ -21,3 +21,7 @@ Este archivo separa hechos verificados de configuraciones previstas. Las evidenc
 - Video propio YouTube, evidencias, comprobación de requisitos y TXT final.
 
 **Nota:** una captura de configuración provisional no prueba que el requisito evaluado esté completado. Toda conclusión final debe basarse en pruebas nuevas y verificables.
+
+## Avance verificado — 21 de octubre de 2026
+
+En la consola de Windows Server de la VM 150 se comprobó con `Get-WindowsFeature AD-Domain-Services,DNS,NPAS | Format-Table Name,InstallState` que los tres roles figuran como **Installed**. El comando de instalación informó `Success: True` y `Restart Needed: No`. Captura real aportada durante la sesión, pendiente de su incorporación a `evidencias/03-windows-roles-instalados.png`. **No significa que exista todavía un dominio AD ni que NPS esté configurado.**
