@@ -1,0 +1,16 @@
+# No subir secretos ni ficheros privados
+.env
+*.pem
+*.key
+*.pfx
+*.p12
+*.vma
+*.vma.zst
+*.qcow2
+*.iso
+*.vmdk
+*.ovf
+*.bak
+*.rdp
+*.log
+.DS_Store
