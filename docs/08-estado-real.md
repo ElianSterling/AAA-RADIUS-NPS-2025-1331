@@ -35,3 +35,7 @@ Resultados observados en captura: `DNSRoot=empresa.test`, `NetBIOSName=EMPRESA`,
 ## Grupos AD validados mediante captura (21 de octubre de 2026)
 
 En Active Directory Users and Computers se observó la OU `LAB-AAA` del dominio `empresa.test`, con los tres grupos de tipo seguridad `GG_NIVEL_0`, `GG_NIVEL_5` y `GG_NIVEL_10`. Su creación queda verificada visualmente. Captura suministrada en la sesión, aún pendiente de subida física al repositorio como `evidencias/05-active-directory-grupos.png`. **Los usuarios, membresías y privilegios RADIUS todavía no han sido verificados.**
+
+## Usuarios AD creados (captura posterior)
+
+En una captura de Active Directory Users and Computers dentro de `empresa.test > LAB-AAA` se observan los usuarios `usuario0`, `usuario5` y `usuario10`, además de los tres grupos `GG_NIVEL_0`, `GG_NIVEL_5` y `GG_NIVEL_10`. **La creación de usuarios queda visualmente confirmada; membresía efectiva de cada usuario en su grupo y estado `Enabled` pendientes de verificación con PowerShell.** Evidencia gráfica del estudiante pendiente de incorporarse como `evidencias/06-active-directory-usuarios.png`.
