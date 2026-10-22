@@ -39,3 +39,7 @@ En Active Directory Users and Computers se observó la OU `LAB-AAA` del dominio 
 ## Usuarios AD creados (captura posterior)
 
 En una captura de Active Directory Users and Computers dentro de `empresa.test > LAB-AAA` se observan los usuarios `usuario0`, `usuario5` y `usuario10`, además de los tres grupos `GG_NIVEL_0`, `GG_NIVEL_5` y `GG_NIVEL_10`. **La creación de usuarios queda visualmente confirmada; membresía efectiva de cada usuario en su grupo y estado `Enabled` pendientes de verificación con PowerShell.** Evidencia gráfica del estudiante pendiente de incorporarse como `evidencias/06-active-directory-usuarios.png`.
+
+## Membresías comprobadas (captura del estudiante)
+
+Comando usado: `Get-ADUser -Properties Enabled,MemberOf` y `Get-ADGroup`, comparación de DN del grupo. La tabla de PowerShell mostró `usuario0`, `usuario5`, `usuario10` habilitados (`True`) y con pertenencia correcta (`True`) a `GG_NIVEL_0`, `GG_NIVEL_5` y `GG_NIVEL_10`, respectivamente. Pendiente subir la captura real como `evidencias/06b-verificacion-membresias.png`. **No se han comprobado todavía niveles de autorización Cisco ni autenticaciones RADIUS.**
