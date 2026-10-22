@@ -43,3 +43,7 @@ En una captura de Active Directory Users and Computers dentro de `empresa.test >
 ## Membresías comprobadas (captura del estudiante)
 
 Comando usado: `Get-ADUser -Properties Enabled,MemberOf` y `Get-ADGroup`, comparación de DN del grupo. La tabla de PowerShell mostró `usuario0`, `usuario5`, `usuario10` habilitados (`True`) y con pertenencia correcta (`True`) a `GG_NIVEL_0`, `GG_NIVEL_5` y `GG_NIVEL_10`, respectivamente. Pendiente subir la captura real como `evidencias/06b-verificacion-membresias.png`. **No se han comprobado todavía niveles de autorización Cisco ni autenticaciones RADIUS.**
+
+## NPS: servicio y auditoría comprobados (captura de 21 octubre 2026)
+
+El estudiante ejecutó `Get-Service IAS`, que mostró el servicio **Network Policy Server (IAS) en Running**. `auditpol /set /subcategory:"Network Policy Server" /success:enable /failure:enable` informó ejecución exitosa, y `auditpol /get` mostró **Success and Failure**. Captura auténtica suministrada, todavía pendiente de incorporación en `evidencias/07-nps-servicio-auditoria.png`. **No está comprobado aún** el registro NPS en Active Directory, la configuración de clientes RADIUS ni que se hayan recibido Access-Request; estos pasos siguen pendientes.
