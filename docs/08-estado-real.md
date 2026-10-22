@@ -51,3 +51,7 @@ El estudiante ejecutó `Get-Service IAS`, que mostró el servicio **Network Poli
 ## Clientes RADIUS en NPS — verificados en captura
 
 La lista de clientes RADIUS de NPS muestra **R1-CISCO** (10.25.13.1) y **SW1-CISCO** (10.25.13.2), fabricante Cisco, ambos en estado **Enabled**. Captura proporcionada por el estudiante, pendiente de guardarse como `evidencias/08-nps-clientes-radius.png` en el repositorio. Esta evidencia demuestra configuración NPS, **no** conexión ni autenticación exitosa de dispositivos IOS. Siguen pendientes la comprobación de registro del servidor en RAS and IAS Servers, las Network Policies por grupo, el firewall RADIUS y las pruebas reales desde GNS3.
+
+## Tres Network Policies NPS creadas y habilitadas — verificación visual (21 oct 2026)
+
+La pantalla `Network Policies` de NPS muestra **AAA_NIVEL_10** (orden 1), **AAA_NIVEL_5** (orden 2) y **AAA_NIVEL_0** (orden 3), todas **Enabled** con **Grant Access**. Las políticas predeterminadas quedan por debajo con órdenes 999998 y 999999. Las pantallas de resumen previas muestran grupos AD individuales, PAP, Service-Type Login, timeout 15 min y Cisco-AV-Pair `shell:priv-lvl=10`, `shell:priv-lvl=5`, `shell:priv-lvl=0` (aún sin prueba Cisco). Evidencia visual proporcionada por el estudiante; archivo PNG pendiente de incorporación como `evidencias/12-nps-tres-politicas.png`. PENDIENTE: verificar el registro NPS en AD, firewall UDP 1812/1813, accounting, topología GNS3, AAA/SSH y logs reales. La captura no prueba autenticación efectiva.
