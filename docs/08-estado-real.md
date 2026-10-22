@@ -47,3 +47,7 @@ Comando usado: `Get-ADUser -Properties Enabled,MemberOf` y `Get-ADGroup`, compar
 ## NPS: servicio y auditoría comprobados (captura de 21 octubre 2026)
 
 El estudiante ejecutó `Get-Service IAS`, que mostró el servicio **Network Policy Server (IAS) en Running**. `auditpol /set /subcategory:"Network Policy Server" /success:enable /failure:enable` informó ejecución exitosa, y `auditpol /get` mostró **Success and Failure**. Captura auténtica suministrada, todavía pendiente de incorporación en `evidencias/07-nps-servicio-auditoria.png`. **No está comprobado aún** el registro NPS en Active Directory, la configuración de clientes RADIUS ni que se hayan recibido Access-Request; estos pasos siguen pendientes.
+
+## Clientes RADIUS en NPS — verificados en captura
+
+La lista de clientes RADIUS de NPS muestra **R1-CISCO** (10.25.13.1) y **SW1-CISCO** (10.25.13.2), fabricante Cisco, ambos en estado **Enabled**. Captura proporcionada por el estudiante, pendiente de guardarse como `evidencias/08-nps-clientes-radius.png` en el repositorio. Esta evidencia demuestra configuración NPS, **no** conexión ni autenticación exitosa de dispositivos IOS. Siguen pendientes la comprobación de registro del servidor en RAS and IAS Servers, las Network Policies por grupo, el firewall RADIUS y las pruebas reales desde GNS3.
