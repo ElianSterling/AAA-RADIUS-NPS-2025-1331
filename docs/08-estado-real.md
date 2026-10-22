@@ -59,3 +59,18 @@ La pantalla `Network Policies` de NPS muestra **AAA_NIVEL_10** (orden 1), **AAA_
 ## NPS registrado en AD y puertos observados (captura del estudiante, 21 oct 2026)
 
 La consulta a `RAS and IAS Servers` devolvió el objeto de equipo `SRV-AD-NPS$`. Servicio `IAS`: **Running**. `Get-NetUDPEndpoint -LocalPort 1812,1813` mostró ambos puertos en escucha en `10.25.13.31` y también en las interfaces `192.168.1.53` y `192.168.50.10` (por lo que se debe revisar exposición y limpiar IP antigua con cuidado). La consulta de reglas activas mostró excepciones NPS para RADIUS y protocolos adicionales, todas **Allow**, sin verificar todavía la restricción por dirección origen. Captura real enviada y pendiente de incorporar como `evidencias/13-nps-registro-puertos-firewall.png`. **No hay aún pruebas de autenticación de clientes Cisco.**
+
+## Firewall RADIUS restringido — verificación PowerShell (21 de octubre de 2026)
+
+El estudiante ejecutó satisfactoriamente `netsh advfirewall export "C:\Windows\Temp\firewall-pre-radius.wfw"`, y la consola respondió **Ok.** El respaldo queda exclusivamente en Windows Server y **no debe subirse al repositorio**.
+
+Posteriormente restringió las reglas integradas NPS:
+
+| Regla | Estado | Puerto UDP | IP local | IP remota |
+|---|---|---|---|---|
+| Legacy RADIUS Authentication | Disabled | 1645 | Any | Any |
+| Legacy RADIUS Accounting | Disabled | 1646 | Any | Any |
+| RADIUS Authentication | Enabled | 1812 | 10.25.13.31 | 10.25.13.1, 10.25.13.2 |
+| RADIUS Accounting | Enabled | 1813 | 10.25.13.31 | 10.25.13.1, 10.25.13.2 |
+
+El resultado procede de la salida real de PowerShell proporcionada por el estudiante. Evidencia gráfica pendiente: `evidencias/14-nps-firewall-radius-restringido.png`. **Alcance comprobado:** estas cuatro reglas. Sigue pendiente auditar cualquier otra regla que pueda permitir UDP 1812/1813. Continúan pendientes los registros efectivos de solicitudes/accounting y las pruebas auténticas desde Cisco en GNS3.
