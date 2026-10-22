@@ -74,3 +74,7 @@ Posteriormente restringió las reglas integradas NPS:
 | RADIUS Accounting | Enabled | 1813 | 10.25.13.31 | 10.25.13.1, 10.25.13.2 |
 
 El resultado procede de la salida real de PowerShell proporcionada por el estudiante. Evidencia gráfica pendiente: `evidencias/14-nps-firewall-radius-restringido.png`. **Alcance comprobado:** estas cuatro reglas. Sigue pendiente auditar cualquier otra regla que pueda permitir UDP 1812/1813. Continúan pendientes los registros efectivos de solicitudes/accounting y las pruebas auténticas desde Cisco en GNS3.
+
+## NPS Accounting: configuración de registro revisada (capturas 21 oct 2026)
+
+En `Accounting > Log File Properties`, se observó en la pestaña **Log File**: directorio `%SystemRoot%\System32\LogFiles`, formato **DTS Compliant**, rotación **Daily** y opción de borrar logs antiguos si el disco se llena. En **Settings**, estaban activadas las cuatro casillas: `Accounting requests`, `Authentication requests`, `Periodic accounting status`, `Periodic authentication status`. Además, aparecía activada `If logging fails, discard connection requests` (política *fail-closed*). El estudiante debe pulsar OK y verificar la persistencia antes de considerar esto finalizado. La opción fail-closed es aceptable para esta práctica, con la advertencia de que fallos en registro o disco pueden bloquear autenticaciones. Capturas reales pendientes de cargar al repositorio como `evidencias/15-nps-accounting.png` y una de la pestaña Log File. Pendiente comprobación `sc.exe qsidtype IAS` y autenticación RADIUS real desde GNS3.
