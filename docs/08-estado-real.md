@@ -90,3 +90,7 @@ La consulta inicial `Get-Service NTDS,DNS,IAS` mostró **DNS Running, IAS Stoppe
 ## GNS3: inventario de plantillas verificado en capturas de Fedora (24 oct 2026)
 
 En `Edit > Preferences` el cliente GNS3 está conectado al servidor remoto `gns3`. `Dynamips > IOS routers` y `IOS on UNIX > IOU Devices` aparecen sin plantillas. `QEMU > Qemu VMs` muestra las plantillas **Cisco IOSv 15.9(3)M9** (QEMU, e1000, 4 adaptadores, 512 MiB, servidor `gns3`) y **Cisco IOSvL2 20200929**. Se utilizarán como R1 y SW1 respectivamente. Imágenes reales aportadas en conversación, todavía no incorporadas al repositorio. Siguiente hito: crear proyecto en GNS3 y vincular un Cloud a la NIC que corresponda a `net4`/`vmbr50` de la VM 100; mapear por MAC antes de conectarlo. Esta elección evita instalar otras imágenes y mantiene Windows NPS en la VM 150.
+
+## GNS3: proyecto creado y dispositivos colocados (captura del 24 oct 2026)
+
+En el cliente GNS3 de Fedora, el proyecto **AAA-RADIUS-NPS-2025-1331** está abierto y aparecen tres nodos en el lienzo: un Cisco IOSv 15.9(3)M9, un Cisco IOSvL2 20200929 y `Cloud1`. Los dos nodos Cisco aparecen detenidos y Cloud está disponible. **Pendiente:** renombrarlos R1, SW1, CLOUD-AAA; confirmar que Cloud reside en el servidor GNS3 remoto y mapear por MAC su adaptador con `net4`/`vmbr50` de Proxmox ANTES de crear enlaces. No se ha verificado aún ningún cable ni configuración IP. Evidencia: captura original proporcionada por el estudiante; pendiente de publicación en `evidencias/18-gns3-topologia-inicial.png`.
