@@ -126,3 +126,7 @@ La consola IOSvL2 de `SW1` muestra la creación de VLAN `13` (`AAA-MANAGEMENT`),
 - Guardar capturas reales como `evidencias/23-r1-interfaz-ip.png` y `evidencias/24-sw1-pruebas-conectividad.png` (archivos pendientes de incorporarse).
 
 Siguiente hito: guardar startup-config R1, establecer credenciales locales de recuperación en R1 y SW1 **antes** de activar `aaa new-model`, habilitar SSH, configurar clientes RADIUS y verificar autenticación/autorización con registros NPS y niveles IOS reales.
+
+## R1: pings a NPS y SW1 y configuración guardada (captura del 24 oct 2026)
+
+La consola Cisco R1 muestra `GigabitEthernet0/0 10.25.13.1 YES manual up up`; `ping 10.25.13.31` devuelve **80% (4/5)**; `ping 10.25.13.2` devuelve **100% (5/5)**. `copy running-config startup-config` informa `Building configuration... [OK]` y la notificación `%GRUB-5-CONFIG_WRITING: GRUB configuration was written to disk successfully.` R1 está listo a nivel ICMP para iniciar el endurecimiento administrativo. **No se ha comprobado aún acceso RADIUS/SSH/AAA.** Conservar captura del usuario como evidencia real pendiente de carga, `evidencias/25-r1-ping-y-config-guardada.png`. Siguiente hito: establecer usuario administrativo local de recuperación, enable secret, SSHv2 y comprobar CLI antes de habilitar AAA sobre las líneas indicadas por la práctica. Nunca publicar secretos de RADIUS ni contraseñas en capturas/configs del repositorio.
