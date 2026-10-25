@@ -114,3 +114,15 @@ SW1 arranca correctamente con IOSvL2 15.2 (imagen 20200929). `show ip interface 
 ## SW1 VLAN de administración configurada y verificada (captura del 24 oct 2026)
 
 La consola IOSvL2 de `SW1` muestra la creación de VLAN `13` (`AAA-MANAGEMENT`), Gi0/0 y Gi0/1 en modo access sobre VLAN 13, `interface Vlan13` con IP **10.25.13.2/24**, `no shutdown`, e `ip default-gateway 10.25.13.1`. Comandos de verificación confirman **Vlan13 up/up**, **Gi0/0 up/up VLAN 13** (enlace a R1), y **Gi0/1 up/up VLAN 13** (enlace a Cloud enp6s22). **Pendiente:** prueba efectiva `ping 10.25.13.31`, comprobación de que R1 Gi0/0 tenga `10.25.13.1/24` y esté up/up, y guardar running-config. Evidencia suministrada por usuario en la conversación; archivo físico `evidencias/22-switch-sw1-vlan13.png` pendiente de subirse. El estado `up/up` no demuestra por sí solo conectividad IP con NPS.
+
+## Conectividad R1-SW1-NPS demostrada en GNS3 (capturas del 24 de octubre de 2026)
+
+- **R1:** `show ip interface brief` confirma `GigabitEthernet0/0 10.25.13.1 YES manual up up`. Las otras interfaces están `administratively down/down`.
+- **SW1:** `Vlan13 10.25.13.2 up/up`; VLAN 13 `AAA-MANAGEMENT` con Gi0/0 hacia R1 y Gi0/1 hacia CLOUD-AAA, ambos conectados.
+- Desde SW1 hacia NPS `10.25.13.31` hay dos pings documentados: inicialmente **4/5 (80%)** y luego **5/5 (100%)**.
+- Desde SW1 hacia R1 `10.25.13.1`: **4/5 (80%)**.
+- En SW1 `copy running-config startup-config` devolvió `[OK]` y un mensaje de escritura exitosa en disco.
+- El alcance probado es **conectividad IP/ICMP**; no hay todavía autenticación RADIUS funcional probada (UDP 1812/1813) ni sesión SSH/AAA probada.
+- Guardar capturas reales como `evidencias/23-r1-interfaz-ip.png` y `evidencias/24-sw1-pruebas-conectividad.png` (archivos pendientes de incorporarse).
+
+Siguiente hito: guardar startup-config R1, establecer credenciales locales de recuperación en R1 y SW1 **antes** de activar `aaa new-model`, habilitar SSH, configurar clientes RADIUS y verificar autenticación/autorización con registros NPS y niveles IOS reales.
