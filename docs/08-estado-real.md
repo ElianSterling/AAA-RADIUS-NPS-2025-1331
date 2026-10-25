@@ -94,3 +94,7 @@ En `Edit > Preferences` el cliente GNS3 está conectado al servidor remoto `gns3
 ## GNS3: proyecto creado y dispositivos colocados (captura del 24 oct 2026)
 
 En el cliente GNS3 de Fedora, el proyecto **AAA-RADIUS-NPS-2025-1331** está abierto y aparecen tres nodos en el lienzo: un Cisco IOSv 15.9(3)M9, un Cisco IOSvL2 20200929 y `Cloud1`. Los dos nodos Cisco aparecen detenidos y Cloud está disponible. **Pendiente:** renombrarlos R1, SW1, CLOUD-AAA; confirmar que Cloud reside en el servidor GNS3 remoto y mapear por MAC su adaptador con `net4`/`vmbr50` de Proxmox ANTES de crear enlaces. No se ha verificado aún ningún cable ni configuración IP. Evidencia: captura original proporcionada por el estudiante; pendiente de publicación en `evidencias/18-gns3-topologia-inicial.png`.
+
+## Mapeo de NIC del laboratorio confirmado — GNS3 Ubuntu VM 100 (24 oct 2026)
+
+En la VM Ubuntu que ejecuta GNS3, el estudiante identificó mediante lectura de `/sys/class/net/*/address` que **enp6s22 = bc:24:11:bc:fa:00**, coincidente con la NIC Proxmox **net4 = vmbr50** de VM 100. `ip -br link` mostró `enp6s22 DOWN` (sin `UP`). El paso siguiente será habilitar **solo esa interfaz**, sin IP ni rutas, mediante `sudo ip link set dev enp6s22 up`, inspeccionar su estado y configurar el Cloud remoto de GNS3 con `enp6s22`. No se han conectado enlaces todavía. Captura pendiente: `evidencias/19-gns3-interfaz-vmbr50.png`.
