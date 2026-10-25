@@ -98,3 +98,7 @@ En el cliente GNS3 de Fedora, el proyecto **AAA-RADIUS-NPS-2025-1331** está abi
 ## Mapeo de NIC del laboratorio confirmado — GNS3 Ubuntu VM 100 (24 oct 2026)
 
 En la VM Ubuntu que ejecuta GNS3, el estudiante identificó mediante lectura de `/sys/class/net/*/address` que **enp6s22 = bc:24:11:bc:fa:00**, coincidente con la NIC Proxmox **net4 = vmbr50** de VM 100. `ip -br link` mostró `enp6s22 DOWN` (sin `UP`). El paso siguiente será habilitar **solo esa interfaz**, sin IP ni rutas, mediante `sudo ip link set dev enp6s22 up`, inspeccionar su estado y configurar el Cloud remoto de GNS3 con `enp6s22`. No se han conectado enlaces todavía. Captura pendiente: `evidencias/19-gns3-interfaz-vmbr50.png`.
+
+## GNS3: topología cableada en el proyecto (captura del 24 oct 2026)
+
+La imagen de GNS3 muestra el proyecto `AAA-RADIUS-NPS-2025-1331` con nodos renombrados `R1`, `SW1` y `CLOUD-AAA`. Enlaces creados visualmente: **R1 `e0` → SW1 `e0`** y **SW1 `e1` → CLOUD-AAA `enp6s22`**. En la lista de nodos, **R1 y SW1 aparecen apagados (rojo)** y Cloud activo (verde). Aún no se han validado las interfaces concretas vistas desde Cisco IOS, IPs, VLAN, ni ping a NPS; no declarar conectividad hasta probarla. Conservar captura como `evidencias/20-gns3-topologia-conectada.png` (todavía pendiente de subir el archivo gráfico). Siguiente paso: iniciar R1 y SW1 por GNS3, mostrar `show ip interface brief` en ambos; en SW1 comprobar además `show vlan brief` y `show interfaces status` para escoger las interfaces IOS correctas antes de cambiar configuración.
