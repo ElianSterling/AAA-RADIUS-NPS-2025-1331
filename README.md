@@ -1,5 +1,13 @@
 # Laboratorio AAA · RADIUS · Windows NPS
 
+## 🎬 Video demostrativo — Práctica 4
+
+**[▶ Ver demostración en YouTube](https://youtu.be/sHstTWs5tKY)** · [Enlace directo](https://youtu.be/sHstTWs5tKY)
+
+Video grabado y enlace facilitado por el estudiante. La duración y los requisitos audiovisuales deben revisarse directamente en YouTube antes de la entrega.
+
+---
+
 **Autenticación, autorización y auditoría de acceso administrativo en equipos Cisco**
 
 Proyecto académico de **Seguridad de Redes — ITLA**, implementado con Cisco IOSv/IOSvL2, GNS3, Proxmox, Windows Server 2019, Active Directory Domain Services (AD DS) y Network Policy Server (NPS).
@@ -9,12 +17,6 @@ Proyecto académico de **Seguridad de Redes — ITLA**, implementado con Cisco I
 | AAA / RADIUS / NPS | Elian Sterling Severino Mejía | Matrícula **2025-1331** | **29 de octubre de 2026** |
 
 > **Resultado principal:** autenticación SSH centralizada, privilegios IOS 0/5/10 según políticas NPS, accounting de inicio y cierre de sesiones en ambos Cisco y autenticación local de recuperación por consola. Los resultados se documentan con configuraciones saneadas, registros y capturas auténticas.
-
-## 🎬 Video demostrativo
-
-**La demostración ya fue grabada.** El enlace público de YouTube se incorporará aquí, al comienzo del repositorio, cuando esté disponible. El contenido grabado aún no ha sido revisado desde este repositorio.
-
-[**Requisitos del video y formato de entrega**](docs/06-video-y-entrega.md)
 
 ## Navegación rápida
 
@@ -26,6 +28,7 @@ Proyecto académico de **Seguridad de Redes — ITLA**, implementado con Cisco I
 | [Pruebas y resultados](docs/05-pruebas-y-evidencias.md) | Matriz de verificación y limitaciones |
 | [Galería de evidencias](docs/09-evidencias-visuales.md) | **21 capturas reales**, clasificadas, publicadas y enlazadas |
 | [Conclusiones](docs/10-resultados-y-conclusiones.md) | Resultados, lecciones aprendidas y límites del laboratorio |
+| [Video y entrega](docs/06-video-y-entrega.md) | Grabación y archivo TXT de la Práctica 4 |
 | [Seguridad de los respaldos](docs/07-publicacion-y-seguridad.md) | Protección de secretos y alcance de publicación |
 
 ## Arquitectura implementada
@@ -81,6 +84,7 @@ Consulta el [**catálogo completo de 21 capturas**](docs/09-evidencias-visuales.
 - [**Matriz de requisitos y pruebas**](docs/01-objetivos-rubrica.md)
 - [**Plantilla de administración de identidades AD**](scripts/01-crear-grupos-usuarios-ad.ps1) — se conserva como **script de referencia**; no se afirma que toda la implementación haya sido ejecutada automáticamente desde este archivo.
 - [**Bitácora histórica de implementación**](docs/08-estado-real.md)
+- [**Archivo TXT de entrega — Práctica 4**](Elian_Sterling_Severino_Mejia_2025-1331_P4.txt)
 
 Consulta también la [**política de publicación segura**](SECURITY.md).
 
@@ -103,7 +107,7 @@ Los archivos de configuración son **copias para documentación**, no restauraci
 | [03 · Servidor](docs/03-active-directory-nps.md) | Usuarios, grupos y NPS |
 | [04 · Dispositivos](docs/04-cisco-aaa.md) | Listas y líneas AAA |
 | [05 · Verificación](docs/05-pruebas-y-evidencias.md) | Pruebas verificadas y evidencias complementarias |
-| [06 · Video y entrega](docs/06-video-y-entrega.md) | Grabación y enlace final |
+| [06 · Video y entrega](docs/06-video-y-entrega.md) | Enlace de YouTube y comprobaciones de entrega |
 | [07 · Publicación segura](docs/07-publicacion-y-seguridad.md) | Gestión de secretos |
 | [08 · Bitácora histórica](docs/08-estado-real.md) | Registro cronológico; no refleja por sí solo el estado final |
 | [09 · Galería visual](docs/09-evidencias-visuales.md) | Índice de capturas auténticas |
@@ -112,4 +116,4 @@ Los archivos de configuración son **copias para documentación**, no restauraci
 ---
 
 **Elian Sterling Severino Mejía** · ITLA · Seguridad de Redes · Matrícula 2025-1331  
-*Práctica académica documentada con evidencias reales. Actualizada el 29 de octubre de 2026.*
+*Práctica académica documentada con evidencias reales. Video y entrega enlazados el 29 de octubre de 2026.*
