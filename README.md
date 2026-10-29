@@ -24,7 +24,8 @@ Proyecto académico de **Seguridad de Redes — ITLA**, implementado con Cisco I
 | [Implementación de AD DS y NPS](docs/03-active-directory-nps.md) | Usuarios, políticas y atributos Cisco |
 | [Configuración AAA de Cisco](docs/04-cisco-aaa.md) | Autenticación, autorización, accounting y acceso de recuperación |
 | [Pruebas y resultados](docs/05-pruebas-y-evidencias.md) | Matriz de verificación y limitaciones |
-| [Galería de evidencias](docs/09-evidencias-visuales.md) | **21 capturas reales**, clasificadas y enlazadas |
+| [Galería de evidencias](docs/09-evidencias-visuales.md) | **21 capturas reales**, clasificadas, publicadas y enlazadas |
+| [Conclusiones](docs/10-resultados-y-conclusiones.md) | Resultados, lecciones aprendidas y límites del laboratorio |
 | [Seguridad de los respaldos](docs/07-publicacion-y-seguridad.md) | Protección de secretos y alcance de publicación |
 
 ## Arquitectura implementada
@@ -78,6 +79,7 @@ Consulta el [**catálogo completo de 21 capturas**](docs/09-evidencias-visuales.
 - [**Configuración saneada de R1**](configs/R1-running-sanitized.txt)
 - [**Configuración saneada de SW1**](configs/SW1-running-sanitized.txt)
 - [**Matriz de requisitos y pruebas**](docs/01-objetivos-rubrica.md)
+- [**Plantilla de administración de identidades AD**](scripts/01-crear-grupos-usuarios-ad.ps1) — se conserva como **script de referencia**; no se afirma que toda la implementación haya sido ejecutada automáticamente desde este archivo.
 - [**Bitácora histórica de implementación**](docs/08-estado-real.md)
 
 Los archivos de configuración son **copias para documentación**, no restauraciones completas: se retiraron claves, hashes y banners extensos. El respaldo íntegro de NPS (`NPS-Backup.xml`) se conserva **fuera de GitHub** porque incluye secretos compartidos RADIUS sin cifrar.
@@ -103,6 +105,7 @@ Los archivos de configuración son **copias para documentación**, no restauraci
 | [07 · Publicación segura](docs/07-publicacion-y-seguridad.md) | Gestión de secretos |
 | [08 · Bitácora histórica](docs/08-estado-real.md) | Registro cronológico; no refleja por sí solo el estado final |
 | [09 · Galería visual](docs/09-evidencias-visuales.md) | Índice de capturas auténticas |
+| [10 · Conclusiones](docs/10-resultados-y-conclusiones.md) | Resultados y aprendizaje |
 
 ---
 
