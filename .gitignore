@@ -1,9 +1,22 @@
-# No subir secretos ni ficheros privados
+# Copias y material privado del laboratorio AAA-RADIUS-NPS
 .env
+.env.*
+!.env.example
+privado/
+private/
+backups/
+NPS-Backup.xml
+*NPS*Backup*.xml
+R1-consola.txt
+SW1-consola.txt
+*-consola.txt
+*.pcap
+*.pcapng
 *.pem
 *.key
 *.pfx
 *.p12
+*.ppk
 *.vma
 *.vma.zst
 *.qcow2
