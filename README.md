@@ -1,22 +1,59 @@
-# Laboratorio AAA · RADIUS · Windows NPS
+<p align="center">
+  <img src="assets/portada.svg" width="100%" alt="Portada del laboratorio AAA/RADIUS/NPS: Cisco, GNS3, Active Directory y Windows NPS">
+</p>
 
-## 🎬 Video demostrativo — Práctica 4
+<h1 align="center">Laboratorio AAA · RADIUS · Windows NPS</h1>
 
-**[▶ Ver demostración en YouTube](https://youtu.be/sHstTWs5tKY)** · [Enlace directo](https://youtu.be/sHstTWs5tKY)
+<p align="center">
+  <strong>Implementación de autenticación, autorización y auditoría de acceso administrativo en Cisco IOS</strong>
+</p>
 
-Video grabado y enlace facilitado por el estudiante. La duración y los requisitos audiovisuales deben revisarse directamente en YouTube antes de la entrega.
+<p align="center">
+  <img src="https://img.shields.io/badge/ITLA-Seguridad%20de%20Redes-0B2644?style=for-the-badge" alt="ITLA Seguridad de Redes">
+  <img src="https://img.shields.io/badge/Práctica-04-18B7AF?style=for-the-badge" alt="Práctica 04">
+  <img src="https://img.shields.io/badge/Evidencias-21%20capturas-1D76B2?style=for-the-badge" alt="21 capturas de evidencia">
+</p>
+
+<p align="center">
+  <a href="https://youtu.be/sHstTWs5tKY"><strong>▶ VER VIDEO DEMOSTRATIVO</strong></a>
+  &nbsp;&nbsp;•&nbsp;&nbsp;
+  <a href="docs/09-evidencias-visuales.md"><strong>VER EVIDENCIAS</strong></a>
+  &nbsp;&nbsp;•&nbsp;&nbsp;
+  <a href="docs/10-resultados-y-conclusiones.md"><strong>RESULTADOS</strong></a>
+  &nbsp;&nbsp;•&nbsp;&nbsp;
+  <a href="Elian_Sterling_Severino_Mejia_2025-1331_P4.txt"><strong>ARCHIVO DE ENTREGA</strong></a>
+</p>
 
 ---
 
-**Autenticación, autorización y auditoría de acceso administrativo en equipos Cisco**
+## Presentación del proyecto
 
-Proyecto académico de **Seguridad de Redes — ITLA**, implementado con Cisco IOSv/IOSvL2, GNS3, Proxmox, Windows Server 2019, Active Directory Domain Services (AD DS) y Network Policy Server (NPS).
+Proyecto académico de **Seguridad de Redes — ITLA** desarrollado sobre Cisco IOSv/IOSvL2, GNS3, Proxmox, Windows Server 2019, Active Directory (AD DS) y Network Policy Server (NPS).
 
-| Proyecto | Responsable | Identificación | Fecha de validación |
-|:--|:--|:--|:--|
-| AAA / RADIUS / NPS | Elian Sterling Severino Mejía | Matrícula **2025-1331** | **29 de octubre de 2026** |
+El laboratorio centraliza la autenticación SSH de un router y un switch Cisco, asigna privilegios según políticas RADIUS y registra el inicio y cierre de las sesiones administrativas.
 
-> **Resultado principal:** autenticación SSH centralizada, privilegios IOS 0/5/10 según políticas NPS, accounting de inicio y cierre de sesiones en ambos Cisco y autenticación local de recuperación por consola. Los resultados se documentan con configuraciones saneadas, registros y capturas auténticas.
+| **Dispositivos Cisco** | **Niveles de acceso** | **Evidencias visuales** | **Sesiones con accounting** |
+|:--:|:--:|:--:|:--:|
+| **2** · R1 + SW1 | **3** · 0 / 5 / 10 | **21** capturas | **7** pares START/STOP |
+
+| Información académica | Detalle |
+|:--|:--|
+| **Estudiante** | Elian Sterling Severino Mejía |
+| **Matrícula** | 2025-1331 |
+| **Institución** | Instituto Tecnológico de Las Américas (ITLA) |
+| **Asignatura** | Seguridad de Redes |
+| **Entrega** | Práctica 4 |
+| **Fecha de validación** | 29 de octubre de 2026 |
+
+> **Resultado comprobado:** autenticación y autorización centralizadas mediante Windows NPS y AD DS, privilegios efectivos de sesión, accounting START/STOP en ambos dispositivos y acceso local de recuperación por consola. Las fotografías, configuraciones saneadas y la matriz de pruebas están disponibles en el repositorio.
+
+### 🎬 Demostración en video
+
+[![Ver demostración de AAA/RADIUS/NPS](https://img.shields.io/badge/YouTube-VER%20DEMOSTRACI%C3%93N-DC2626?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/sHstTWs5tKY)
+
+**Enlace directo:** https://youtu.be/sHstTWs5tKY
+
+La grabación fue proporcionada por el estudiante. La duración, fecha/hora, presencia en cámara y calidad del audio deben verificarse al reproducir el video.
 
 ## Navegación rápida
 
