@@ -22,8 +22,8 @@ Implementar y verificar un esquema **AAA** (Authentication, Authorization and Ac
 | Registro de aceptación/rechazo | Eventos Security 6272 y 6273 | **Verificado** |
 | Respaldo y configuraciones Cisco | Exportaciones privadas y versiones saneadas en `configs/` | **Verificado** |
 | Capturas e informe | 21 PNG originales publicados y catálogo técnico | **Publicado** |
-| Video de demostración | Grabación realizada por el estudiante; falta URL pública | **Grabado; publicación por enlazar** |
-| TXT con enlaces para entregar | Se genera con la URL real del video y nombre P# exigido | **A formalizar tras la URL** |
+| Video de demostración | [Enlace de YouTube proporcionado](https://youtu.be/sHstTWs5tKY) | **Enlazado; contenido audiovisual por revisar** |
+| TXT con enlaces para entregar | [Elian_Sterling_Severino_Mejia_2025-1331_P4.txt](../Elian_Sterling_Severino_Mejia_2025-1331_P4.txt) con GitHub y YouTube | **Creado** |
 
 **Precisiones:** el privilegio 0 no permite `show privilege`, y su restricción se comprobó con `?`. En IOSv no se realizó una sesión física de AUX. Una prueba anterior de ICMP fallida no invalida el flujo RADIUS cuyo tráfico y respuestas sí se verificaron.
 
