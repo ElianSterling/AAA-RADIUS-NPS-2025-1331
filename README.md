@@ -49,6 +49,7 @@ Implementar autenticación, autorización y registro de accesos administrativos 
 - [Pruebas y evidencias](docs/05-pruebas-y-evidencias.md)
 - [Video y archivo de entrega](docs/06-video-y-entrega.md)
 - [Seguridad de la publicación](docs/07-publicacion-y-seguridad.md)
+- [Catálogo de 21 evidencias visuales revisadas](docs/09-evidencias-visuales.md)
 
 **Carpetas:** `scripts/` (código ejecutado), `cisco/` (plantillas), `configs/` (exportaciones reales saneadas), `evidencias/` (capturas reales), `diagramas/` (topología).
 
@@ -64,7 +65,7 @@ Implementar autenticación, autorización y registro de accesos administrativos 
 - **Respaldo NPS:** se exportó exitosamente `NPS-Backup.xml` de 65,891 bytes, **con secretos en texto claro**. Conservado fuera de GitHub; no publicarlo.
 - **Configuraciones Cisco sanitizadas:** [R1](configs/R1-running-sanitized.txt) · [SW1](configs/SW1-running-sanitized.txt). Se eliminaron credenciales y textos extensos de banner; son documentos, no archivos de restauración.
 
-**Aspectos por concluir:** adjuntar capturas y exportaciones de evidencia seleccionadas, verificar que el proyecto GNS3 correcto está guardado, grabar el video de máximo 10 minutos y añadir el enlace de YouTube y TXT requerido. La topología del repositorio debe compararse con la configuración efectivamente implementada.
+**Aspectos por concluir:** subir al repositorio los 21 PNG seleccionados (el catálogo ya está publicado), adjuntar capturas recientes, verificar que el proyecto GNS3 correcto está guardado, grabar el video de máximo 10 minutos y añadir el enlace de YouTube y TXT requerido. La topología del repositorio debe compararse con la configuración efectivamente implementada.
 
 **Nota de seguridad:** SW1 tiene `ip http server` y `ip http secure-server` habilitados. No son necesarios para esta validación AAA; en un despliegue real corresponde revisar/deshabilitar interfaces de administración que no se utilicen.
 
