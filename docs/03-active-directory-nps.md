@@ -1,39 +1,65 @@
-# Implementación Windows Server: AD DS, DNS y NPS
+# 03 · Windows Server, Active Directory y NPS
 
-## Preparación
-1. Comprobar VM 150 en Proxmox, red y la existencia de backup.
-2. Confirmar adaptadores con Get-NetAdapter y Get-NetIPConfiguration.
-3. Definir la IP definitiva del laboratorio y evitar interfaces de un DC multihomed. Mantener acceso por consola Proxmox mientras se reconfigura.
-4. El host tendrá nombre SRV-AD-NPS y dominio de prueba empresa.test; confirmar configuración antes de promover.
+[← Inicio](../README.md) · [Topología](02-topologia-y-red.md) · [Auditoría](05-pruebas-y-evidencias.md)
 
-## Instalar roles (PowerShell administrador)
+## Servidor de autenticación
 
-~~~powershell
-Install-WindowsFeature AD-Domain-Services,DNS,NPAS -IncludeManagementTools
-Install-ADDSForest -DomainName 'empresa.test' -DomainNetbiosName 'EMPRESA' -InstallDNS
-~~~
+| Servicio | Implementación |
+|:--|:--|
+| Sistema operativo | Windows Server 2019 |
+| VM | Proxmox 150 · `SRV-AD-NPS` |
+| IP de laboratorio | `10.25.13.31/24` |
+| Dominio AD DS | `empresa.test` (NetBIOS `EMPRESA`) |
+| Roles | AD DS, DNS y Network Policy Server (NPS) |
+| Servicio de NPS | `IAS` — **Running** el 29/10/2026 |
 
-La promoción pide contraseña DSRM y reinicia Windows. No publicar contraseña ni información sensible.
+## Identidades y grupos
 
-## Tres grupos
-Ejecutar scripts/01-crear-grupos-usuarios-ad.ps1 después de la promoción. Crear y demostrar:
-- GG_NIVEL_0 → usuario0
-- GG_NIVEL_5 → usuario5
-- GG_NIVEL_10 → usuario10
+Los usuarios de laboratorio están asociados a los grupos de seguridad respectivos:
 
-## NPS
-1. Server Manager → Tools → Network Policy Server.
-2. Registrar NPS en Active Directory desde el nodo NPS (Local).
-3. RADIUS Clients: añadir R1 (10.25.13.1) y SW1 (10.25.13.2); claves compartidas **distintas**, largas y secretas.
-4. Crear políticas de red para los tres grupos. Ordenar de más específica a menos específica, con condiciones de grupo y NAS adecuadas.
-5. En la política correspondiente, configurar Cisco Vendor-Specific Attribute: Vendor ID 9, Cisco-AV-Pair (tipo 1) con cadena shell:priv-lvl=0, =5 o =10; esta atribución requiere prueba de compatibilidad de la imagen IOS.
-6. Revisar constraints y método de autenticación. Si únicamente PAP es viable en el laboratorio, mantener RADIUS dentro de segmento aislado y documentar el riesgo; no usarlo sobre Internet.
-7. Permitir UDP 1812/1813 solamente desde R1 y SW1 en Windows Firewall; revisar Connection Request Policies.
+| Grupo AD | Usuario de prueba | Privilegio de sesión |
+|:--|:--|:--|
+| `GG_NIVEL_0` | `usuario0` | 0 |
+| `GG_NIVEL_5` | `usuario5` | 5 |
+| `GG_NIVEL_10` | `usuario10` | 10 |
 
-## Auditoría y pruebas
-- Event Viewer → Windows Logs → Security. Activar auditoría NPS si fuese necesario.
-- Evento 6272: acceso concedido; 6273: denegación.
-- NPS Accounting: registros de solicitudes y sesiones, incluidos Access-Request y accounting cuando esté disponible.
-- Capturar fecha/hora, nombre de política, identificador del cliente y resultado; ocultar secretos.
+[Ver evidencia de grupos y usuarios](../evidencias/02-servidor-ad/03-validacion-usuarios-grupos-ad.png).
 
-Referencias: https://learn.microsoft.com/en-us/windows-server/networking/technologies/nps/
+## Clientes y políticas RADIUS
+
+NPS tiene configurados **R1-CISCO** (`10.25.13.1`) y **SW1-CISCO** (`10.25.13.2`) como clientes RADIUS.
+
+| Network Policy | Atributo Cisco VSA | Efecto comprobado |
+|:--|:--|:--|
+| `AAA_NIVEL_0` | `shell:priv-lvl=0` | Shell con comandos restringidos |
+| `AAA_NIVEL_5` | `shell:priv-lvl=5` | `show privilege` = 5 en R1 |
+| `AAA_NIVEL_10` | `shell:priv-lvl=10` | `show privilege` = 10 en R1 y SW1 |
+
+Las políticas utilizan autenticación de Windows y respuestas RADIUS con `Service-Type = NAS Prompt` (observado en la configuración y pruebas de atributos de la fase de implementación). Se utilizó PAP en este laboratorio; este método debe mantenerse dentro de un segmento controlado, no expuesto a Internet.
+
+[Clientes RADIUS](../evidencias/03-nps-clientes-politicas/04-clientes-radius-nps.png) · [Políticas NPS](../evidencias/03-nps-clientes-politicas/05-politicas-nps-listado.png) · [Atributos nivel 0](../evidencias/03-nps-clientes-politicas/09-cisco-avpair-priv0.png) / [5](../evidencias/03-nps-clientes-politicas/10-cisco-avpair-priv5.png) / [10](../evidencias/03-nps-clientes-politicas/11-cisco-avpair-priv10.png)
+
+## Registros de autenticación y contabilidad
+
+La pestaña de accounting NPS se configuró para registrar solicitudes de autenticación y accounting en **archivos locales**, formato **DTS Compliant**, con archivo nuevo **diario** en `%SystemRoot%\System32\LogFiles`.
+
+| Registro | Resultado observado |
+|:--|:--|
+| `IN261029.log` | 25,470 bytes al comprobar el 29/10/2026; seis pares START/STOP de R1 |
+| `IN261027.log` | Una sesión `usuario5` de SW1 con START y STOP |
+| Event ID **6272** | Concesión de acceso |
+| Event ID **6273** | Rechazo de `usuario0`, Reason Code **16**, error de credenciales |
+
+Los eventos NPS del 29/10 muestran autenticaciones autorizadas después del rechazo observado. Las parejas START y STOP de R1 y SW1 se localizaron analizando `Acct-Status-Type` en los archivos NPS.
+
+[Configuración de archivos de accounting](../evidencias/06-auditoria-nps/21-configuracion-archivo-accounting.png) · [Catálogo de auditoría](09-evidencias-visuales.md)
+
+## Respaldo y seguridad
+
+Se realizó la exportación privada `NPS-Backup.xml` mediante `netsh nps export ... exportPSK=YES` y se comprobó un tamaño de **65,891 bytes** el 29/10/2026.
+
+**No publicar este XML**: el comando exporta las claves compartidas RADIUS sin cifrar. La exportación NPS tampoco es un respaldo integral de Active Directory; no debe confundirse con una copia de usuarios y grupos del dominio.
+
+El repositorio contiene referencias y fotografías auténticas, no contraseñas ni el respaldo completo con secretos.
+
+**Referencia:** [Microsoft Learn — Network Policy Server](https://learn.microsoft.com/en-us/windows-server/networking/technologies/nps/nps-top).
