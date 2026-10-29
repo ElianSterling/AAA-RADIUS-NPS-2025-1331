@@ -1,16 +1,48 @@
-PRÁCTICA 4 — AAA / RADIUS / NPS
-Institución: ITLA
-Asignatura: Seguridad de Redes
-Estudiante: Elian Sterling Severino Mejía
-Matrícula: 2025-1331
+╔════════════════════════════════════════════════════════════════════════════╗
+║                  INSTITUTO TECNOLÓGICO DE LAS AMÉRICAS                   ║
+║                                  (ITLA)                                  ║
+║                                                                          ║
+║                    ÁREA ACADÉMICA: SEGURIDAD DE REDES                    ║
+║                                                                          ║
+║                          P R Á C T I C A   0 4                           ║
+║                                                                          ║
+║                   IMPLEMENTACIÓN DE AAA, RADIUS Y NPS                    ║
+║                Autenticación · Autorización · Accounting                 ║
+║                                                                          ║
+║          Cisco IOS  |  Active Directory  |  Windows Server NPS           ║
+║                                                                          ║
+╚════════════════════════════════════════════════════════════════════════════╝
 
-REPOSITORIO GITHUB
+IDENTIFICACIÓN ACADÉMICA
+────────────────────────────────────────────────
+Estudiante       Elian Sterling Severino Mejía
+Matrícula        2025-1331
+Asignatura       Seguridad de Redes
+Institución      Instituto Tecnológico de Las Américas (ITLA)
+Fecha            29 de octubre de 2026
+
+OBJETO DE LA ENTREGA
+────────────────────────────────────────────────
+Implementación y validación de autenticación centralizada AAA/RADIUS
+sobre dispositivos Cisco mediante Active Directory y Windows NPS,
+incluyendo autorización por niveles y registro de sesiones.
+
+01  REPOSITORIO GITHUB — DOCUMENTACIÓN Y CONFIGURACIONES
+──────────────────────────────────────────────────────────────────
 https://github.com/ElianSterling/AAA-RADIUS-NPS-2025-1331
 
-VIDEO DEMOSTRATIVO EN YOUTUBE
+02  VIDEO DE DEMOSTRACIÓN — YOUTUBE
+──────────────────────────────────────────────────────────────────
 https://youtu.be/sHstTWs5tKY
 
-DOCUMENTACIÓN Y EVIDENCIAS
+03  EVIDENCIAS DEL PROCESO — GALERÍA DOCUMENTADA
+──────────────────────────────────────────────────────────────────
 https://github.com/ElianSterling/AAA-RADIUS-NPS-2025-1331/blob/main/docs/09-evidencias-visuales.md
 
-Fecha de preparación: 29/10/2026
+04  RESULTADOS Y CONCLUSIONES
+──────────────────────────────────────────────────────────────────
+https://github.com/ElianSterling/AAA-RADIUS-NPS-2025-1331/blob/main/docs/10-resultados-y-conclusiones.md
+
+════════════════════════════════════════════════════════════════════════════
+ENTREGA ACADÉMICA INDIVIDUAL  •  ITLA  •  MATRÍCULA 2025-1331
+════════════════════════════════════════════════════════════════════════════
