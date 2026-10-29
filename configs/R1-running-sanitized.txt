@@ -1,0 +1,152 @@
+! R1 - AAA RADIUS NPS
+! Configuracion depurada para documentacion
+! No utilizar para restauracion
+! Credenciales omitidas
+
+
+!
+! Last configuration change at 19:14:17 UTC Thu Oct 29 2026 by adminrespaldo
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+! [CREDENCIAL OMITIDA]
+!
+aaa new-model
+!
+!
+aaa group server radius NPS-GROUP
+ server name NPS-AD
+!
+aaa authentication login default local
+aaa authentication login LAB-RADIUS group NPS-GROUP local
+aaa authentication login LAB-LOCAL local
+aaa authorization exec LAB-EXEC group NPS-GROUP local 
+aaa accounting exec LAB-ACCOUNT start-stop group NPS-GROUP
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name empresa.test
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+! [CREDENCIAL OMITIDA]
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ description CONEXION-SW1-LAB-AAA
+ ip address 10.25.13.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip ssh time-out 60
+ip ssh version 2
+!
+ip radius source-interface GigabitEthernet0/0 
+ipv6 ioam timestamp
+!
+!
+!
+!
+radius server NPS-AD
+ address ipv4 10.25.13.31 auth-port 1812 acct-port 1813
+! [CREDENCIAL OMITIDA]
+!
+!
+control-plane
+!
+! [BANNER IOSv OMITIDO]
+! [BANNER IOSv OMITIDO]
+! [BANNER IOSv OMITIDO]
+!
+line con 0
+ login authentication LAB-LOCAL
+line aux 0
+ login authentication LAB-LOCAL
+line vty 0 4
+ exec-timeout 15 0
+ authorization exec LAB-EXEC
+ accounting exec LAB-ACCOUNT
+ login authentication LAB-RADIUS
+ transport input ssh
+!
+no scheduler allocate
+!
+end
