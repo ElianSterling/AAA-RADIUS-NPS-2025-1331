@@ -82,6 +82,8 @@ Consulta el [**catálogo completo de 21 capturas**](docs/09-evidencias-visuales.
 - [**Plantilla de administración de identidades AD**](scripts/01-crear-grupos-usuarios-ad.ps1) — se conserva como **script de referencia**; no se afirma que toda la implementación haya sido ejecutada automáticamente desde este archivo.
 - [**Bitácora histórica de implementación**](docs/08-estado-real.md)
 
+Consulta también la [**política de publicación segura**](SECURITY.md).
+
 Los archivos de configuración son **copias para documentación**, no restauraciones completas: se retiraron claves, hashes y banners extensos. El respaldo íntegro de NPS (`NPS-Backup.xml`) se conserva **fuera de GitHub** porque incluye secretos compartidos RADIUS sin cifrar.
 
 ## Alcance y consideraciones
