@@ -4,7 +4,7 @@
 
 > **Guía de lectura — 29/10/2026:** este documento conserva el registro **cronológico** de avances, problemas y correcciones entre el 21 y el 29 de octubre de 2026. Las menciones a “pendiente”, direcciones `192.168.50.x`, configuraciones incompletas o pruebas todavía no realizadas se refieren **únicamente a la fecha de cada anotación**. No describen el estado final. Para la validación de entrega consulte [la matriz de resultados](05-pruebas-y-evidencias.md) y [la portada](../README.md).
 
-**Resumen de cierre:** R1 `10.25.13.1`, SW1 `10.25.13.2`, NPS `10.25.13.31`; autenticación SSH y privilegios 0/5/10 comprobados, accounting START/STOP de ambos equipos registrado por NPS, y autenticación AAA local en consola y AUX (sin prueba física de AUX). Configuraciones saneadas y 21 capturas auténticas publicadas. La demostración fue grabada; el enlace público de YouTube se añadirá cuando esté disponible.
+**Resumen de cierre:** R1 `10.25.13.1`, SW1 `10.25.13.2`, NPS `10.25.13.31`; autenticación SSH y privilegios 0/5/10 comprobados, accounting START/STOP de ambos equipos registrado por NPS, y autenticación AAA local en consola y AUX (sin prueba física de AUX). Configuraciones saneadas y 21 capturas auténticas publicadas. La demostración fue grabada; el enlace del estudiante está disponible en [YouTube](https://youtu.be/sHstTWs5tKY) y en el [TXT de entrega](../Elian_Sterling_Severino_Mejia_2025-1331_P4.txt).
 
 ---
 
