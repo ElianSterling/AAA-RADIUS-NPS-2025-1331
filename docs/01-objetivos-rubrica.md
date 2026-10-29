@@ -1,23 +1,36 @@
-# Objetivos y control de requisitos
+# 01 · Objetivos y control de requisitos
 
-**Objetivo general:** desplegar y validar AAA de administración para un router y un switch Cisco mediante RADIUS, Microsoft Active Directory y NPS, preservando acceso local exclusivamente por consola/AUX y usando SSH para acceso remoto.
+[← Inicio](../README.md) · [Pruebas](05-pruebas-y-evidencias.md) · [Evidencias](09-evidencias-visuales.md)
 
-| Requisito | Evidencia que se debe capturar | Estado |
-|---|---|---|
-| 1 router Cisco | Topología GNS3, show version | PENDIENTE |
-| 1 switch Cisco con IOS AAA | Topología, show version | PENDIENTE |
-| Active Directory y NPS | Roles Windows y consola NPS | PENDIENTE |
-| Grupos nivel 0, 5 y 10 | Usuarios y grupos AD | PENDIENTE |
-| RADIUS cliente en R1 y SW1 | Clientes NPS, show aaa servers | PENDIENTE |
-| Usuario local solo consola/AUX | Configuración de líneas y prueba | PENDIENTE |
-| SSH administrativo | show ip ssh y conexiones reales | PENDIENTE |
-| Autenticación y autorización | Accesos 0/5/10, show privilege | PENDIENTE |
-| Logs autenticación/autorización/RADIUS | Eventos NPS y logs Cisco | PENDIENTE |
-| Running-configs | Exportaciones reales y saneadas | PENDIENTE |
-| Scripts | Versiones de scripts realmente utilizadas | EN PREPARACIÓN |
-| Propósito, diagramas, imágenes | README, SVG, capturas auténticas | EN PREPARACIÓN |
-| Video al principio del repositorio | URL real YouTube | PENDIENTE |
-| Video ≤10 min, rostro, voz, fecha, hora | Inspección del video final | PENDIENTE |
-| TXT según patrón del profesor | Nombre y URLs reales | PENDIENTE |
+## Objetivo
 
-El enunciado indica trabajo INDIVIDUAL y descalificación por indicios de fraude. Nunca simular evidencia. El identificador exacto P# de la entrega debe confirmarse antes de renombrar el TXT final.
+Implementar y verificar un esquema **AAA** (Authentication, Authorization and Accounting) para la administración de un router y un switch Cisco, respaldado por **Active Directory + Windows NPS (RADIUS)**, con SSH y recuperación por consola local.
+
+## Matriz de cumplimiento — 29/10/2026
+
+| Requisito del laboratorio | Implementación / evidencia | Estado |
+|:--|:--|:--|
+| Un router Cisco | R1 IOSv, Gi0/0 `10.25.13.1` y topología GNS3 | **Verificado** |
+| Un switch Cisco | SW1 IOSvL2, SVI VLAN13 `10.25.13.2` | **Verificado** |
+| Windows Server con AD DS y NPS | SRV-AD-NPS `10.25.13.31`; servicio IAS activo | **Verificado** |
+| Grupos y usuarios nivel 0, 5, 10 | Tres políticas y grupos asociados en AD/NPS | **Verificado** |
+| RADIUS en ambos Cisco | NPS-GROUP, RADIUS UDP 1812/1813, aceptación y accounting | **Verificado** |
+| Usuario administrativo local | `adminrespaldo` en consola y AUX mediante LAB-LOCAL | **Consola probada; AUX configurada** |
+| Acceso remoto seguro | VTY 0–4 exclusivamente SSH v2, con LAB-RADIUS | **Verificado** |
+| Asignación de privilegios | R1: 5 y 10 con `show privilege`; 0 con comandos restringidos; SW1: 10 | **Verificado en pruebas descritas** |
+| Contabilidad RADIUS | NPS: R1 seis pares START/STOP; SW1 un par | **Verificado** |
+| Registro de aceptación/rechazo | Eventos Security 6272 y 6273 | **Verificado** |
+| Respaldo y configuraciones Cisco | Exportaciones privadas y versiones saneadas en `configs/` | **Verificado** |
+| Capturas e informe | 21 PNG originales publicados y catálogo técnico | **Publicado** |
+| Video de demostración | Grabación realizada por el estudiante; falta URL pública | **Grabado; publicación por enlazar** |
+| TXT con enlaces para entregar | Se genera con la URL real del video y nombre P# exigido | **A formalizar tras la URL** |
+
+**Precisiones:** el privilegio 0 no permite `show privilege`, y su restricción se comprobó con `?`. En IOSv no se realizó una sesión física de AUX. Una prueba anterior de ICMP fallida no invalida el flujo RADIUS cuyo tráfico y respuestas sí se verificaron.
+
+## Criterios de integridad
+
+Se usan solamente configuraciones, logs y fotografías auténticos de la práctica. Las rutas saneadas permiten verificar sintaxis sin publicar contraseñas, secretos RADIUS, hashes ni certificados privados. Las capturas históricas no se presentan como si fuesen posteriores a los cambios finales.
+
+## Alcance de autorización
+
+La autorización EXEC basada en atributo `shell:priv-lvl` **no constituye** una prueba de autorización individual de cada comando. El proyecto verifica niveles de privilegio de sesión.
