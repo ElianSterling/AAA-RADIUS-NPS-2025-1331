@@ -1,76 +1,110 @@
-# 🎥 Video demostrativo — AAA / RADIUS / NPS
+# Laboratorio AAA · RADIUS · Windows NPS
 
-**Pendiente:** insertar aquí el enlace real de YouTube al finalizar las pruebas. Duración máxima: **10 minutos**. Deben verse la fecha y la hora, el rostro del estudiante y escucharse su voz. Se mostrarán únicamente demostraciones auténticas.
+**Autenticación, autorización y auditoría de acceso administrativo en equipos Cisco**
 
-# Implementación de AAA y RADIUS con Active Directory, NPS y Cisco IOS
+Proyecto académico de **Seguridad de Redes — ITLA**, implementado con Cisco IOSv/IOSvL2, GNS3, Proxmox, Windows Server 2019, Active Directory Domain Services (AD DS) y Network Policy Server (NPS).
 
-**Estudiante:** Elian Sterling Severino Mejía  
-**Matrícula:** 2025-1331  
-**Institución:** ITLA — Seguridad de Redes  
-**Modalidad:** individual  
-**Estado (29/10/2026):** AAA/RADIUS/SSH y accounting probados; respaldo NPS y configuraciones Cisco disponibles; evidencias gráficas y video final pendientes
+| Proyecto | Responsable | Identificación | Fecha de validación |
+|:--|:--|:--|:--|
+| AAA / RADIUS / NPS | Elian Sterling Severino Mejía | Matrícula **2025-1331** | **29 de octubre de 2026** |
 
-## Objetivo
+> **Resultado principal:** autenticación SSH centralizada, privilegios IOS 0/5/10 según políticas NPS, accounting de inicio y cierre de sesiones en ambos Cisco y autenticación local de recuperación por consola. Los resultados se documentan con configuraciones saneadas, registros y capturas auténticas.
 
-Implementar autenticación, autorización y registro de accesos administrativos para **un router y un switch Cisco**. Las sesiones **SSH/VTY** utilizarán **RADIUS** mediante **Network Policy Server (NPS)** y **Active Directory**. El acceso local de emergencia estará reservado para **consola y AUX** cuando la imagen Cisco disponga de este último puerto. Se comprobarán tres grupos de AD (nivel 0, 5 y 10) y la compatibilidad real con privilegios IOS.
+## 🎬 Video demostrativo
 
-## Topología implementada
+**La demostración ya fue grabada.** El enlace público de YouTube se incorporará aquí, al comienzo del repositorio, cuando esté disponible. El contenido grabado aún no ha sido revisado desde este repositorio.
 
-![Diagrama lógico del laboratorio](diagramas/topologia.svg)
+[**Requisitos del video y formato de entrega**](docs/06-video-y-entrega.md)
 
-| Equipo | Dirección comprobada | Función |
-|---|---|---|
-| R1 Cisco | 10.25.13.1/24 | Cliente RADIUS y SSH |
-| SW1 Cisco | 10.25.13.2/24 | Cliente RADIUS y SSH |
-| SRV-AD-NPS | 10.25.13.31/24 | AD DS, DNS y NPS |
-| vmbr50 | 10.25.13.254/24 | Bridge AAA del host Proxmox |
+## Navegación rápida
 
-**Direccionamiento realmente verificado en el laboratorio.** La SVI administrativa de SW1 es VLAN 13. Pruebas SSH se realizaron de SW1 a R1 y viceversa.
+| Recurso | Contenido |
+|:--|:--|
+| [Arquitectura y direccionamiento](docs/02-topologia-y-red.md) | Equipos, VLAN, interfaces y flujos |
+| [Implementación de AD DS y NPS](docs/03-active-directory-nps.md) | Usuarios, políticas y atributos Cisco |
+| [Configuración AAA de Cisco](docs/04-cisco-aaa.md) | Autenticación, autorización, accounting y acceso de recuperación |
+| [Pruebas y resultados](docs/05-pruebas-y-evidencias.md) | Matriz de verificación y limitaciones |
+| [Galería de evidencias](docs/09-evidencias-visuales.md) | **21 capturas reales**, clasificadas y enlazadas |
+| [Seguridad de los respaldos](docs/07-publicacion-y-seguridad.md) | Protección de secretos y alcance de publicación |
 
-## Requisitos evaluados
+## Arquitectura implementada
 
-- AAA de autenticación y autorización para router y switch.
-- RADIUS como cliente en ambos Cisco; NPS como servidor RADIUS.
-- Usuario local `adminrespaldo` para recuperación por consola/AUX; VTY 0–4 con SSH y RADIUS en ambos equipos. SW1 también tiene VTY 5–15 con SSH y autenticación local predeterminada, lo que se documenta como particularidad de la práctica.
-- Registro de éxitos, rechazos y eventos AAA/RADIUS.
-- Tres grupos de seguridad en AD: `GG_NIVEL_0`, `GG_NIVEL_5` y `GG_NIVEL_10`.
-- Evidencia de los niveles efectivos con `show privilege` y comandos realmente permitidos.
-- Documentación, diagramas, imágenes auténticas, scripts utilizados y running-configs sanitizados.
-- Video independiente de esta infraestructura en YouTube y TXT de entrega.
+![Diagrama de arquitectura de AAA y RADIUS](diagramas/topologia.svg)
 
-**Nota técnica:** RADIUS puede asignar el nivel de privilegio de sesión mediante atributos de Cisco si el IOS lo admite; la autorización detallada por comando suele requerir TACACS+. Se documentará cualquier límite real, sin simular resultados.
+| Elemento | Dirección | Función |
+|:--|:--|:--|
+| **R1** · Cisco IOSv | `10.25.13.1/24` · Gi0/0 | Router y cliente RADIUS |
+| **SW1** · Cisco IOSvL2 | `10.25.13.2/24` · VLAN 13 | Switch y cliente RADIUS |
+| **SRV-AD-NPS** · Windows Server 2019 | `10.25.13.31/24` | AD DS, DNS y servidor RADIUS/NPS |
+| **Proxmox HomeLab** | `vmbr50` · `10.25.13.254/24` | Segmento virtual AAA |
+| **GNS3 Controller** | VM 100 · interfaz net4 | Simulación Cisco y enlace a vmbr50 |
 
-## Documentación
+**Protocolos:** SSH sobre TCP/22, RADIUS Authentication sobre UDP/1812 y RADIUS Accounting sobre UDP/1813. La validación de credenciales y grupos se realiza en AD DS a través de NPS.
 
-- [Rúbrica y objetivos](docs/01-objetivos-rubrica.md)
-- [Topología, redes y conectividad](docs/02-topologia-y-red.md)
-- [Implementación AD DS y NPS](docs/03-active-directory-nps.md)
-- [Configuración Cisco AAA, SSH y RADIUS](docs/04-cisco-aaa.md)
-- [Pruebas y evidencias](docs/05-pruebas-y-evidencias.md)
-- [Video y archivo de entrega](docs/06-video-y-entrega.md)
-- [Seguridad de la publicación](docs/07-publicacion-y-seguridad.md)
-- [Catálogo de 21 evidencias visuales revisadas](docs/09-evidencias-visuales.md) — [Ver capturas publicadas](evidencias/)
+## Implementación AAA
 
-**Carpetas:** `scripts/` (código ejecutado), `cisco/` (plantillas), `configs/` (exportaciones reales saneadas), `evidencias/` (capturas reales), `diagramas/` (topología).
+| Función | Aplicación en R1 y SW1 | Comprobación |
+|:--|:--|:--|
+| **Authentication** | `LAB-RADIUS` en VTY 0–4 | Inicio de sesión por SSH utilizando cuentas de AD |
+| **Authorization** | `LAB-EXEC` en VTY 0–4 | Niveles de privilegio recibidos mediante `Cisco-AV-Pair` |
+| **Accounting** | `LAB-ACCOUNT` en VTY 0–4 | Registros RADIUS START y STOP |
+| **Acceso de recuperación** | `LAB-LOCAL` en consola y AUX | Acceso local por consola probado con privilegio 15 |
 
+Las políticas NPS **`AAA_NIVEL_0`**, **`AAA_NIVEL_5`** y **`AAA_NIVEL_10`** asignan el atributo `shell:priv-lvl` correspondiente. El valor de privilegio 0 se verificó por las restricciones del intérprete IOS; los niveles 5 y 10 se corroboraron con `show privilege`.
 
-## Estado comprobado (29 de octubre de 2026)
+### Resultados comprobados
 
-- **R1:** autenticación RADIUS por SSH y asignación de privilegios 5 y 10 confirmadas mediante `show privilege`; `usuario0` accedió con conjunto restringido de comandos coherente con privilegio 0.
-- **SW1:** autenticaciones RADIUS exitosas y sesiones SSH documentadas.
-- **Accounting R1:** seis pares `START`/`STOP` en `IN261029.log` de Windows NPS para `adminrespaldo`, `usuario5`, `usuario10` y `usuario0`.
-- **Accounting SW1:** un par `START`/`STOP` en `IN261027.log`, originado desde `10.25.13.2` para `usuario5`.
-- **Consola y AUX:** autenticación AAA con lista `LAB-LOCAL` configurada en ambos equipos. Se validó acceso local por consola con privilegio 15; AUX no dispone de evidencia de conexión física en el entorno virtual.
-- **Auditoría NPS:** eventos 6272 de acceso autorizado y evento 6273 de credenciales incorrectas (código 16). El servicio `IAS` estaba en ejecución y `IN261029.log` contenía registros.
-- **Respaldo NPS:** se exportó exitosamente `NPS-Backup.xml` de 65,891 bytes, **con secretos en texto claro**. Conservado fuera de GitHub; no publicarlo.
-- **Configuraciones Cisco sanitizadas:** [R1](configs/R1-running-sanitized.txt) · [SW1](configs/SW1-running-sanitized.txt). Se eliminaron credenciales y textos extensos de banner; son documentos, no archivos de restauración.
+| Prueba | Evidencia obtenida | Resultado |
+|:--|:--|:--|
+| SSH a R1 con `usuario5` | `show privilege` = **5** | Confirmado |
+| SSH a R1 con `usuario10` | `show privilege` = **10** | Confirmado |
+| SSH a R1 con `usuario0` | Comandos limitados; `show privilege` no autorizado | Coherente con nivel 0 |
+| SSH a SW1 con `usuario10` | `show privilege` = **10** | Confirmado |
+| Accounting de R1 | **6 START + 6 STOP** en `IN261029.log` | Confirmado |
+| Accounting de SW1 | **1 START + 1 STOP** en `IN261027.log` | Confirmado |
+| Auditoría de NPS | Eventos **6272** y **6273** | Confirmado |
+| Recuperación por consola | `adminrespaldo` y privilegio **15** | Confirmado |
 
-**Aspectos por concluir:** obtener las capturas recientes pendientes (las 21 capturas históricas seleccionadas ya se publicaron), adjuntar las nuevas evidencias, verificar que el proyecto GNS3 correcto está guardado, grabar el video de máximo 10 minutos y añadir el enlace de YouTube y TXT requerido. La topología del repositorio debe compararse con la configuración efectivamente implementada.
+El evento 6273 observado en NPS corresponde a un intento de `usuario0` rechazado por **Reason Code 16** (credenciales incorrectas). No representa indisponibilidad del servicio: se observaron autenticaciones posteriores exitosas.
 
-**Nota de seguridad:** SW1 tiene `ip http server` y `ip http secure-server` habilitados. No son necesarios para esta validación AAA; en un despliegue real corresponde revisar/deshabilitar interfaces de administración que no se utilicen.
+### Evidencias visuales
 
-## Política de evidencias y seguridad
+[![Captura original de la topología en GNS3](evidencias/01-topologia/01-topologia-gns3.png)](docs/09-evidencias-visuales.md)
 
-Todas las capturas, logs y pruebas deben generarse durante la práctica individual. No publicar contraseñas, claves compartidas RADIUS, hashes de tipo secret, tokens, certificados privados ni credenciales de cuentas reales. Conservar originales completos únicamente fuera del repositorio, en almacenamiento seguro. Una configuración saneada debe indicar los valores redactados.
+Consulta el [**catálogo completo de 21 capturas**](docs/09-evidencias-visuales.md), que identifica su contenido y la fecha o fase de las pruebas. Las capturas de días anteriores se distinguen de las pruebas finales del 29 de octubre.
 
-**Referencias:** [Microsoft NPS](https://learn.microsoft.com/en-us/windows-server/networking/technologies/nps/nps-top) · [GitHub Docs](https://docs.github.com/)
+## Archivos técnicos
+
+- [**Configuración saneada de R1**](configs/R1-running-sanitized.txt)
+- [**Configuración saneada de SW1**](configs/SW1-running-sanitized.txt)
+- [**Matriz de requisitos y pruebas**](docs/01-objetivos-rubrica.md)
+- [**Bitácora histórica de implementación**](docs/08-estado-real.md)
+
+Los archivos de configuración son **copias para documentación**, no restauraciones completas: se retiraron claves, hashes y banners extensos. El respaldo íntegro de NPS (`NPS-Backup.xml`) se conserva **fuera de GitHub** porque incluye secretos compartidos RADIUS sin cifrar.
+
+## Alcance y consideraciones
+
+- AUX está **configurada**, pero no se demostró una conexión auxiliar física en esta imagen virtual.
+- SW1 conserva **VTY 5–15** con autenticación local predeterminada; RADIUS se aplica explícitamente a VTY 0–4.
+- SW1 mantiene `ip http server` e `ip http secure-server` activos; en producción se revisaría su necesidad y exposición.
+- RADIUS asigna niveles de sesión; **no se demuestra autorización granular por comando**, función habitualmente asociada a TACACS+.
+- Se trata de una red de laboratorio, no de una configuración endurecida para producción.
+
+## Documentación adicional
+
+| Documento | Propósito |
+|:--|:--|
+| [01 · Requisitos](docs/01-objetivos-rubrica.md) | Alcance y estado real |
+| [02 · Topología](docs/02-topologia-y-red.md) | Infraestructura y comunicaciones |
+| [03 · Servidor](docs/03-active-directory-nps.md) | Usuarios, grupos y NPS |
+| [04 · Dispositivos](docs/04-cisco-aaa.md) | Listas y líneas AAA |
+| [05 · Verificación](docs/05-pruebas-y-evidencias.md) | Pruebas verificadas y evidencias complementarias |
+| [06 · Video y entrega](docs/06-video-y-entrega.md) | Grabación y enlace final |
+| [07 · Publicación segura](docs/07-publicacion-y-seguridad.md) | Gestión de secretos |
+| [08 · Bitácora histórica](docs/08-estado-real.md) | Registro cronológico; no refleja por sí solo el estado final |
+| [09 · Galería visual](docs/09-evidencias-visuales.md) | Índice de capturas auténticas |
+
+---
+
+**Elian Sterling Severino Mejía** · ITLA · Seguridad de Redes · Matrícula 2025-1331  
+*Práctica académica documentada con evidencias reales. Actualizada el 29 de octubre de 2026.*
