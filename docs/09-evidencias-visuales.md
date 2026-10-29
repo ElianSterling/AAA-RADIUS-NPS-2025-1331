@@ -50,7 +50,7 @@ Se recibieron **43 archivos PNG** en `Practica 4.zip`; se seleccionaron **21** i
 2. Tabla PowerShell NPS con `Acct-Status-Type` Start/Stop para los dos clientes Cisco.
 3. `show startup-config | section line` de **ambos** dispositivos para demostrar autenticación local en consola/AUX y RADIUS en VTY.
 4. `show privilege` desde cuentas de niveles 5 y 10 en **R1**; prueba con `usuario0` y comandos limitados.
-5. El video ya fue **grabado**; el enlace real de publicación y el TXT de entrega se añadirán después de recibir la URL. Consulte [video y entrega](06-video-y-entrega.md).
+5. El video fue **grabado y enlazado**: [demostración en YouTube](https://youtu.be/sHstTWs5tKY). El archivo [TXT de entrega](../Elian_Sterling_Severino_Mejia_2025-1331_P4.txt) contiene ambos enlaces; consulte [video y entrega](06-video-y-entrega.md).
 
 ## Seguridad de publicación
 
