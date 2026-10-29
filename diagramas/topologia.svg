@@ -1,33 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="600" viewBox="0 0 1100 600">
-<rect width="1100" height="600" fill="#f8fafc"/>
-<text x="550" y="48" font-family="Arial,sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="#152c43">Laboratorio AAA / RADIUS — 2025-1331</text>
-<text x="550" y="77" font-family="Arial,sans-serif" font-size="17" text-anchor="middle" fill="#536b81">Topología lógica prevista — Proxmox + GNS3 + Windows Server</text>
-<rect x="65" y="112" width="410" height="390" rx="18" fill="#e9f2ff" stroke="#2455a0" stroke-width="2" stroke-dasharray="7 5"/>
-<text x="90" y="143" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#2455a0">GNS3 — VM 100</text>
-<rect x="165" y="168" width="220" height="72" rx="12" fill="#155e91"/>
-<text x="275" y="197" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#fff" font-weight="bold">Router Cisco R1</text>
-<text x="275" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#fff">10.25.13.1</text>
-<path d="M275 240 V275" stroke="#334155" stroke-width="3"/>
-<rect x="165" y="275" width="220" height="72" rx="12" fill="#137780"/>
-<text x="275" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#fff" font-weight="bold">Switch Cisco SW1</text>
-<text x="275" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#fff">10.25.13.2</text>
-<path d="M275 347 V378" stroke="#334155" stroke-width="3"/>
-<rect x="165" y="378" width="220" height="68" rx="12" fill="#475569"/>
-<text x="275" y="406" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#fff" font-weight="bold">GNS3 Cloud</text>
-<text x="275" y="428" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="#fff">NIC net4</text>
-<rect x="520" y="245" width="170" height="96" rx="12" fill="#225d42"/>
-<text x="605" y="279" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#fff" font-weight="bold">vmbr50</text>
-<text x="605" y="307" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#fff">10.25.13.0/24</text>
-<path d="M385 413 H505 V295 H520" stroke="#334155" stroke-width="3" fill="none"/>
-<rect x="740" y="165" width="292" height="149" rx="15" fill="#1e4f93"/>
-<text x="886" y="203" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" fill="#fff" font-weight="bold">Windows Server</text>
-<text x="886" y="232" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#fff">VM 150 · SRV-AD-NPS</text>
-<text x="886" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#fff">AD DS · DNS · NPS</text>
-<text x="886" y="288" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#fff">10.25.13.31</text>
-<path d="M690 280 H740" stroke="#334155" stroke-width="3"/>
-<rect x="740" y="358" width="292" height="110" rx="15" fill="#705697"/>
-<text x="886" y="398" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#fff" font-weight="bold">Ubuntu opcional</text>
-<text x="886" y="426" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#fff">Cliente SSH · 10.25.13.20</text>
-<path d="M690 300 H711 V411 H740" stroke="#334155" stroke-width="3" fill="none"/>
-<text x="550" y="555" font-family="Arial,sans-serif" font-size="15" fill="#475569" text-anchor="middle">Diseño previsto. Las IP por matrícula y el enlace Cloud deben validarse en la implementación real.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" width="1200" height="690" role="img" aria-labelledby="title description">
+<title id="title">Arquitectura implementada: AAA RADIUS con Cisco y Windows NPS</title>
+<desc id="description">R1 y SW1 conectados a CLOUD-AAA en GNS3 VM100, conectado por vmbr50 al servidor Windows NPS VM150. Red 10.25.13.0/24, puertos SSH 22 y RADIUS UDP 1812 y 1813.</desc>
+<rect width="1200" height="690" fill="#f6f9fc"/>
+<rect width="1200" height="118" fill="#102c4c"/>
+<text x="62" y="54" font-size="28" font-family="Arial,sans-serif" font-weight="700" fill="#fff">Arquitectura AAA / RADIUS / NPS</text>
+<text x="62" y="83" font-size="16" font-family="Arial,sans-serif" fill="#c3d7eb">Infraestructura Cisco · GNS3 · Proxmox · Windows Server 2019</text>
+<rect x="49" y="151" width="401" height="416" rx="17" fill="#fff" stroke="#c9d8e8" stroke-width="2"/>
+<rect x="49" y="151" width="401" height="58" rx="17" fill="#e5eef9"/>
+<rect x="49" y="186" width="401" height="23" fill="#e5eef9"/>
+<text x="75" y="185" fill="#173d68" font-family="Arial,sans-serif" font-weight="700" font-size="20">GNS3 Controller · VM 100</text>
+
+<rect x="87" y="228" width="323" height="82" rx="11" fill="#eef4fc" stroke="#7399c8" stroke-width="2"/>
+<circle cx="120" cy="267" r="16" fill="#1a5084"/>
+<text x="120" y="272" text-anchor="middle" font-size="13" font-family="Arial,sans-serif" fill="#fff" font-weight="700">R</text>
+<text x="150" y="258" fill="#13395e" font-size="19" font-weight="700" font-family="Arial,sans-serif">R1 · Cisco IOSv</text>
+<text x="150" y="285" fill="#47647e" font-size="15" font-family="Arial,sans-serif">Gi0/0 · 10.25.13.1/24</text>
+<line x1="248" y1="310" x2="248" y2="337" stroke="#3a718f" stroke-width="3" stroke-linecap="round"/>
+<rect x="87" y="337" width="323" height="82" rx="11" fill="#eaf7f7" stroke="#64a9a5" stroke-width="2"/>
+<circle cx="120" cy="378" r="16" fill="#117c81"/>
+<text x="120" y="383" text-anchor="middle" font-size="13" font-family="Arial,sans-serif" fill="#fff" font-weight="700">S</text>
+<text x="150" y="366" fill="#155b60" font-size="19" font-weight="700" font-family="Arial,sans-serif">SW1 · Cisco IOSvL2</text>
+<text x="150" y="391" fill="#47647e" font-size="15" font-family="Arial,sans-serif">VLAN 13 · 10.25.13.2/24</text>
+<line x1="248" y1="419" x2="248" y2="445" stroke="#3a718f" stroke-width="3" stroke-linecap="round"/>
+<rect x="87" y="445" width="323" height="77" rx="11" fill="#edf1f5" stroke="#8799aa" stroke-width="2"/>
+<text x="248" y="477" text-anchor="middle" fill="#29445d" font-family="Arial,sans-serif" font-size="19" font-weight="700">CLOUD-AAA</text>
+<text x="248" y="500" text-anchor="middle" fill="#556b7e" font-family="Arial,sans-serif" font-size="15">GNS3 NIC net4 · vmbr50</text>
+
+<rect x="497" y="215" width="211" height="286" rx="15" fill="#fff" stroke="#c9d8e8" stroke-width="2"/>
+<text x="602" y="255" text-anchor="middle" fill="#173d68" font-family="Arial,sans-serif" font-size="19" font-weight="700">Proxmox HomeLab</text>
+<rect x="525" y="285" width="155" height="124" rx="11" fill="#e7f7f2" stroke="#5ca38f" stroke-width="2"/>
+<text x="602" y="326" text-anchor="middle" fill="#175b4b" font-family="Arial,sans-serif" font-weight="700" font-size="22">vmbr50</text>
+<text x="602" y="354" text-anchor="middle" fill="#3a5f54" font-family="Arial,sans-serif" font-size="14">10.25.13.0/24</text>
+<text x="602" y="378" text-anchor="middle" fill="#3a5f54" font-family="Arial,sans-serif" font-size="14">Host: .254</text>
+<text x="602" y="456" text-anchor="middle" fill="#596e84" font-family="Arial,sans-serif" font-size="14">Bridge de laboratorio</text>
+<path d="M410 485 H476 V348 H525" stroke="#477d97" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="M680 348 H756" stroke="#477d97" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+<rect x="756" y="151" width="393" height="416" rx="17" fill="#fff" stroke="#c9d8e8" stroke-width="2"/>
+<rect x="756" y="151" width="393" height="58" rx="17" fill="#e5eef9"/>
+<rect x="756" y="186" width="393" height="23" fill="#e5eef9"/>
+<text x="782" y="185" fill="#173d68" font-family="Arial,sans-serif" font-weight="700" font-size="20">Windows Server 2019 · VM 150</text>
+<rect x="790" y="228" width="326" height="202" rx="13" fill="#eff4fb" stroke="#7295bb" stroke-width="2"/>
+<text x="953" y="270" text-anchor="middle" fill="#13395e" font-size="22" font-family="Arial,sans-serif" font-weight="700">SRV-AD-NPS</text>
+<text x="953" y="302" text-anchor="middle" fill="#3a5872" font-size="18" font-family="Arial,sans-serif">10.25.13.31/24</text>
+<line x1="835" x2="1071" y1="320" y2="320" stroke="#c5d7e8"/>
+<text x="953" y="348" text-anchor="middle" fill="#28465e" font-size="17" font-family="Arial,sans-serif">Active Directory (AD DS)</text>
+<text x="953" y="374" text-anchor="middle" fill="#28465e" font-size="17" font-family="Arial,sans-serif">DNS · Windows NPS</text>
+<text x="953" y="401" text-anchor="middle" fill="#47647e" font-size="15" font-family="Arial,sans-serif">Dominio: empresa.test</text>
+<rect x="799" y="465" width="308" height="59" rx="9" fill="#e9f7f2"/>
+<text x="953" y="489" text-anchor="middle" fill="#1f685c" font-size="15" font-family="Arial,sans-serif" font-weight="700">Políticas de acceso: 0 · 5 · 10</text>
+<text x="953" y="510" text-anchor="middle" fill="#477469" font-size="13" font-family="Arial,sans-serif">Autenticación y registro RADIUS</text>
+
+<rect x="49" y="590" width="1100" height="66" rx="12" fill="#e8eff7"/>
+<text x="80" y="616" fill="#173d68" font-size="16" font-family="Arial,sans-serif" font-weight="700">Flujo de administración</text>
+<text x="80" y="640" fill="#405b74" font-size="15" font-family="Arial,sans-serif">SSH TCP/22  ·  Autenticación RADIUS UDP/1812  ·  Accounting UDP/1813  ·  Consola local de recuperación</text>
 </svg>
