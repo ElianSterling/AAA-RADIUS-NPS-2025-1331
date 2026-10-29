@@ -1,14 +1,16 @@
-# Catálogo de evidencias visuales — Práctica 4
+# 09 · Catálogo de evidencias visuales
+
+[← Inicio](../README.md) · [Pruebas](05-pruebas-y-evidencias.md) · [Conclusiones](10-resultados-y-conclusiones.md)
 
 **Estudiante:** Elian Sterling Severino Mejía · **Matrícula:** 2025-1331 · **Revisión:** 29/10/2026.
 
-Se recibieron **43 archivos PNG** en `Practica 4.zip`; se seleccionaron **21** imágenes originales, sin alteraciones, y se descartaron 22 del conjunto de publicación por redundancia o menor valor probatorio. **Las 21 fotografías originales seleccionadas ya están publicadas en GitHub**, bajo las rutas indicadas. El commit de incorporación preservó el contenido binario original de cada PNG. [Ver carpeta de evidencias](../evidencias/).
+Se recibieron **43 archivos PNG** en `Practica 4.zip`; se seleccionaron **21** imágenes originales, sin alteraciones, y se descartaron 22 del conjunto de publicación por redundancia o menor valor probatorio. **Las 21 fotografías originales seleccionadas están publicadas y sus rutas fueron verificadas en GitHub**, bajo las rutas indicadas. El commit de incorporación preservó el contenido binario original de cada PNG. [Ver carpeta de evidencias](../evidencias/).
 
-## Índice de selección
+## Índice de fotografías publicadas
 
 ![Topología GNS3](../evidencias/01-topologia/01-topologia-gns3.png)
 
-| Nº | Área | Ruta recomendada en el repositorio | Qué demuestra |
+| Nº | Área | Evidencia publicada | Qué demuestra |
 |---:|---|---|---|
 | 01 | Topología | [Ver imagen](../evidencias/01-topologia/01-topologia-gns3.png) | Conexiones R1–SW1–CLOUD-AAA, 29/oct |
 | 02 | AD DS | [Ver imagen](../evidencias/02-servidor-ad/02-roles-ad-dns-nps.png) | Roles AD DS, DNS y NPAS instalados, 21/oct |
@@ -40,15 +42,15 @@ Se recibieron **43 archivos PNG** en `Practica 4.zip`; se seleccionaron **21** i
 - **NPS Event Viewer:** eventos 6272 de accesos permitidos y 6273 de un intento de `usuario0` rechazado con código 16 (credenciales incorrectas).
 - **AAA consola/AUX:** configurado `LAB-LOCAL` en consola y AUX de R1 y SW1; consola comprobada con cuenta local y privilegio 15. AUX no se ha probado físicamente en IOSv.
 
-**Distinción cronológica:** las imágenes históricas del 21–27/oct no demuestran por sí solas los cambios finales del 29/oct, cuyas salidas y registros fueron verificados por separado.
+**Distinción cronológica:** las imágenes del 21–27/oct documentan esas etapas y no sustituyen las pruebas finales del 29/oct, que se verificaron por separado mediante las salidas de Cisco IOS y Windows NPS. Ninguna captura se presenta con una fecha distinta de su origen.
 
-## Capturas todavía recomendadas
+## Material de ampliación documental
 
 1. `show aaa servers` reciente de **R1 y SW1**, con contadores Start/Stop y transacciones exitosas.
 2. Tabla PowerShell NPS con `Acct-Status-Type` Start/Stop para los dos clientes Cisco.
 3. `show startup-config | section line` de **ambos** dispositivos para demostrar autenticación local en consola/AUX y RADIUS en VTY.
 4. `show privilege` desde cuentas de niveles 5 y 10 en **R1**; prueba con `usuario0` y comandos limitados.
-5. Video de máximo **10 minutos**, mostrando hora/fecha, rostro y voz, con enlace auténtico de YouTube y TXT de entrega.
+5. El video ya fue **grabado**; el enlace real de publicación y el TXT de entrega se añadirán después de recibir la URL. Consulte [video y entrega](06-video-y-entrega.md).
 
 ## Seguridad de publicación
 
