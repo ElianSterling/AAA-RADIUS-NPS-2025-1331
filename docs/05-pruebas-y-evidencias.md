@@ -1,56 +1,66 @@
-# Matriz de pruebas y evidencias
+# 05 · Verificación y trazabilidad de pruebas
 
-No declarar PASÓ sin observar el resultado auténtico. Para cada prueba adjuntar captura y hora.
+[← Inicio](../README.md) · [Configuración Cisco](04-cisco-aaa.md) · [Catálogo visual](09-evidencias-visuales.md)
 
-| Prueba | Evidencia | Estado |
-|---|---|---|
-| Conectividad R1 → NPS | ping y rutas | PENDIENTE |
-| Conectividad SW1 → NPS | ping | PENDIENTE |
-| Clientes RADIUS NPS R1 y SW1 | Consola NPS | PENDIENTE |
-| Grupos 0, 5, 10 y usuarios AD | ADUC | PENDIENTE |
-| SSH R1 con usuario0/5/10 | Terminal + show privilege | PENDIENTE |
-| SSH SW1 con usuario0/5/10 | Terminal + show privilege | PENDIENTE |
-| Fallo de contraseña | Rechazo y evento 6273 | PENDIENTE |
-| Acceso local consola | Inicio con adminlocal | PENDIENTE |
-| Acceso local AUX si existe | Inicio con adminlocal | PENDIENTE |
-| Solo SSH en VTY | show run line, show ip ssh | PENDIENTE |
-| Eventos AAA Cisco | show logging | PENDIENTE |
-| Eventos NPS y accounting | Logs, 6272/6273 | PENDIENTE |
-| Running-config R1/SW1 | Ficheros saneados | PENDIENTE |
+## Criterio de validación
 
-Nombres de captura sugeridos: 01-topologia-gns3.png, 02-ad-grupos.png, 03-clientes-nps.png, 04-politicas-nps.png, 05-ssh-nivel-0.png, 06-ssh-nivel-5.png, 07-ssh-nivel-10.png, 08-logs-nps.png, 09-logs-cisco.png.
+Los resultados aquí incluidos provienen de **salidas observadas de Cisco IOS, PowerShell y Windows NPS** o de capturas auténticas del laboratorio. Se distingue la evidencia del funcionamiento del dispositivo de la **fotografía disponible** en GitHub: no todos los resultados finales del 29/10 aparecen en las 21 imágenes históricas publicadas.
 
-Nunca capturar claves compartidas, contraseñas ni tokens. Las capturas deben proceder del equipo real, no ser ilustraciones presentadas como pruebas.
+## Matriz de resultados
 
+| ID | Prueba | Evidencia verificada | Resultado |
+|:--|:--|:--|:--|
+| T-01 | Direccionamiento R1 | `Gi0/0 = 10.25.13.1`, up/up | **Conforme** |
+| T-02 | Direccionamiento SW1 | `Vlan13 = 10.25.13.2`, up/up | **Conforme** |
+| T-03 | RADIUS en ambos equipos | `show aaa servers` con respuestas aceptadas | **Conforme** |
+| T-04 | NPS y grupos AD | Clientes R1-CISCO/SW1-CISCO, tres políticas y atributos | **Conforme** |
+| T-05 | SSH a R1 · nivel 5 | Sesión `usuario5` y `show privilege = 5` | **Conforme** |
+| T-06 | SSH a R1 · nivel 10 | Sesión `usuario10` y `show privilege = 10` | **Conforme** |
+| T-07 | SSH a R1 · nivel 0 | `usuario0` autenticado; `?` sin comandos `show` | **Comportamiento conforme** |
+| T-08 | SSH a SW1 · nivel 10 | Sesión `usuario10` y `show privilege = 10` | **Conforme** |
+| T-09 | AAA en consola de R1/SW1 | Reingreso local de `adminrespaldo` y privilegio 15 | **Conforme** |
+| T-10 | AAA en AUX de R1/SW1 | `login authentication LAB-LOCAL` en running-config | **Configurado; sin sesión AUX probada** |
+| T-11 | Accounting R1 | `IN261029.log`: seis parejas START/STOP, cliente 10.25.13.1 | **Conforme** |
+| T-12 | Accounting SW1 | `IN261027.log`: una pareja START/STOP, cliente 10.25.13.2 | **Conforme** |
+| T-13 | Auditoría de concesión | NPS Security 6272 para cuentas de laboratorio | **Conforme** |
+| T-14 | Auditoría de rechazo | NPS Security 6273, `usuario0`, Reason Code 16 | **Conforme** |
+| T-15 | Persistencia de AAA | `copy running-config startup-config` y verificaciones de startup | **Conforme según pruebas de consola** |
+| T-16 | Exportación saneada | [R1](../configs/R1-running-sanitized.txt) y [SW1](../configs/SW1-running-sanitized.txt) | **Publicada** |
 
-## Registro de capturas durante la implementación
+**Autenticación rechazada:** el evento 6273 con código 16 se atribuyó a credenciales incorrectas, y posteriormente se registró una sesión válida de la misma cuenta. No indica caída de NPS.
 
-Guardar cada imagen real apenas se valide el paso, con fecha y hora visible cuando resulte pertinente. Antes de cada cambio importante conservar captura **antes**, y al concluir capturar resultado **después**. Documentar si hubo errores y cómo se solucionaron.
+## Detalle de las sesiones de accounting
 
-| Archivo sugerido | Pantalla o comando concreto | Criterio |
-|---|---|---|
-| 01-proxmox-vm150.png | Proxmox VM 150 Hardware y Network | Se ve nombre de VM, recursos y bridge vmbr50 |
-| 02-windows-configuracion-ip.png | Get-NetIPAddress / Get-NetIPConfiguration | Se ve IP del laboratorio basada en matrícula, estado Preferred |
-| 03-windows-roles-instalados.png | Get-WindowsFeature AD-Domain-Services,DNS,NPAS | InstallState Installed de los tres |
-| 04-active-directory-dominio.png | Server Manager y ADUC | Se ve dominio empresa.test |
-| 05-active-directory-grupos.png | ADUC | Se ven GG_NIVEL_0, GG_NIVEL_5, GG_NIVEL_10 |
-| 06-active-directory-usuarios.png | ADUC Membership | Se ve miembro correcto en cada grupo |
-| 07-nps-clientes-radius.png | NPS RADIUS Clients | Clientes R1 y SW1 con IP correcta |
-| 08-nps-politicas.png | NPS Network Policies | Grupos y atributos de autorización visibles, sin secretos |
-| 09-gns3-topologia.png | GNS3 | R1, SW1, Cloud y conexiones visibles |
-| 10-router-aaa.png | Consola IOS / show run AAA | AAA/VTY/SSH y cliente RADIUS |
-| 11-switch-aaa.png | Consola IOS / show run AAA | AAA/VTY/SSH y cliente RADIUS |
-| 12-pruebas-ssh.png | Sesiones separadas R1 y SW1 | show privilege para niveles 0/5/10 |
-| 13-registros-radius.png | NPS eventos 6272/6273 y registros | Aceptación, rechazo y accounting comprobados |
+| Dispositivo | Archivo de Windows NPS | Usuario | START | STOP |
+|:--|:--|:--|--:|--:|
+| R1 | `IN261029.log` | `adminrespaldo` | 2 | 2 |
+| R1 | `IN261029.log` | `usuario5` | 1 | 1 |
+| R1 | `IN261029.log` | `usuario10` | 1 | 1 |
+| R1 | `IN261029.log` | `usuario0` | 2 | 2 |
+| SW1 | `IN261027.log` | `usuario5` | 1 | 1 |
+| **Total** | | | **7** | **7** |
 
-No se deben publicar capturas con contraseñas, secretos RADIUS, hash de usuarios, datos personales ni información innecesaria del sistema. Guardar originales fuera de GitHub cuando contengan secretos; publicar versiones editadas para protección de datos sin alterar los resultados técnicos. Si una pantalla no demuestra una prueba, marcar PENDIENTE en lugar de aprobarla.
+El servidor NPS registró `Acct-Status-Type = 1` (START) y `Acct-Status-Type = 2` (STOP) en eventos DTS Compliant. En Cisco, las solicitudes y respuestas de accounting también se verificaron con `show aaa servers`.
 
-## Captura inmediata pendiente
+## Capturas disponibles
 
-Estamos en fase de Windows Server VM 150. Antes de cambiar más configuraciones:
-1. Capturar Proxmox VM 150 con sus NIC y el bridge vmbr50.
-2. Capturar la configuración de IP final confirmada desde PowerShell, sin contraseñas.
-3. Tras la instalación de roles, capturar Get-WindowsFeature mostrando Installed.
-4. Al promover el servidor, capturar que empresa.test existe y que DNS funciona; después registrar grupos/usuarios.
+Se recibieron **43 fotografías**, de las que se seleccionaron y publicaron **21**:
 
-**La documentación de GitHub no sustituye la demostración real ni el video individual.**
+- [Topología](../evidencias/01-topologia/01-topologia-gns3.png).
+- [Usuarios y grupos AD](../evidencias/02-servidor-ad/03-validacion-usuarios-grupos-ad.png).
+- [Clientes y políticas NPS](../evidencias/03-nps-clientes-politicas/04-clientes-radius-nps.png).
+- [Acceso SSH con privilegio 10 en SW1](../evidencias/05-ssh-aaa/17-ssh-sw1-usuario10-nivel10.png).
+- [Eventos 6272 de NPS](../evidencias/06-auditoria-nps/20-evento-6272-usuario10.png).
+
+[**Consultar las 21 capturas con descripciones**](09-evidencias-visuales.md).
+
+### Complementos visuales útiles
+
+Las salidas finales de `show startup-config | section line`, las sesiones R1 de niveles 0/5/10 y la tabla PowerShell con accounting START/STOP se verificaron en los registros de trabajo de la práctica, pero **no forman parte de las 21 imágenes seleccionadas**. Si se adjuntan capturas nuevas, deben ser auténticas y preservar la fecha de captura, sin divulgar credenciales.
+
+## Precisión metodológica
+
+- Los intentos fallidos de ping observados en algunas etapas no invalidan las respuestas exitosas de RADIUS.
+- Las capturas de fechas anteriores no prueban por sí solas los cambios del 29 de octubre.
+- No se demuestra autorización detallada por comando mediante TACACS+, ni conexión AUX física.
+- No se recrearon capturas ni se generaron logs sintéticos para presentar evidencias académicas.
