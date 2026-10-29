@@ -4,7 +4,13 @@
 
 ## Grabación
 
-**El estudiante confirmó que el video demostrativo ya está grabado.** La URL de YouTube se incorporará en la primera sección del [README](../README.md) en cuanto se comparta el enlace. No se declara duración ni cumplimiento audiovisual como verificados hasta poder revisar el archivo o su publicación.
+**Video grabado.** El estudiante compartió el enlace directo de YouTube, que ya figura al inicio del [README](../README.md).
+
+### [▶ Ver video de demostración en YouTube](https://youtu.be/sHstTWs5tKY)
+
+**URL:** https://youtu.be/sHstTWs5tKY
+
+> El enlace procede del estudiante. No se ha comprobado desde aquí la duración, el audio, el rostro o la visibilidad de fecha/hora; esos criterios deben verificarse al reproducir el video.
 
 ## Requisitos de la actividad
 
@@ -38,14 +44,15 @@ Este cronograma es una **guía de contenido**, no una aseveración de que la gra
 ## Enlaces de entrega
 
 - **Repositorio:** https://github.com/ElianSterling/AAA-RADIUS-NPS-2025-1331
-- **Video:** se incorporará únicamente al recibir la URL real publicada.
+- **Video:** https://youtu.be/sHstTWs5tKY
+- **Archivo TXT de entrega:** [Elian_Sterling_Severino_Mejia_2025-1331_P4.txt](../Elian_Sterling_Severino_Mejia_2025-1331_P4.txt)
 
-La rúbrica registra el patrón `<Nombre>_<Matrícula>_<P#>.txt` para el archivo de entrega. No se inventará el valor `P#`; debe coincidir con la identificación oficial de la asignación.
+El archivo TXT utiliza el identificador **P4**, correspondiente a la **Práctica 4** del material del estudiante, siguiendo el patrón `<Nombre>_<Matrícula>_<P#>.txt`. Comprueba que la plataforma docente utilice esa misma nomenclatura.
 
 ## Verificación final antes de entregar
 
 1. Abrir el enlace del video en un navegador sin sesión privada.
 2. Confirmar que el audio, la cámara, la fecha y los resultados son legibles.
 3. Comprobar que el video no divulga contraseñas ni claves compartidas.
-4. Agregar el enlace real al README y al TXT.
+4. Confirmar que el enlace incluido en el README y el TXT abre el video correcto.
 5. Verificar que GitHub y YouTube sean accesibles para el profesor.
