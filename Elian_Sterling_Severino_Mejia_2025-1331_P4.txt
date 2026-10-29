@@ -1,0 +1,16 @@
+PRÁCTICA 4 — AAA / RADIUS / NPS
+Institución: ITLA
+Asignatura: Seguridad de Redes
+Estudiante: Elian Sterling Severino Mejía
+Matrícula: 2025-1331
+
+REPOSITORIO GITHUB
+https://github.com/ElianSterling/AAA-RADIUS-NPS-2025-1331
+
+VIDEO DEMOSTRATIVO EN YOUTUBE
+https://youtu.be/sHstTWs5tKY
+
+DOCUMENTACIÓN Y EVIDENCIAS
+https://github.com/ElianSterling/AAA-RADIUS-NPS-2025-1331/blob/main/docs/09-evidencias-visuales.md
+
+Fecha de preparación: 29/10/2026
