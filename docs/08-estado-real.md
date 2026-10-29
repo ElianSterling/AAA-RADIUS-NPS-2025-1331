@@ -1,6 +1,18 @@
-# Estado real de implementación (21 de octubre de 2026)
+# 08 · Bitácora histórica de implementación
 
-Este archivo separa hechos verificados de configuraciones previstas. Las evidencias fotográficas todavía deberán adjuntarse en evidencias/.
+[← Inicio](../README.md) · [Estado final y pruebas](05-pruebas-y-evidencias.md) · [Conclusiones](10-resultados-y-conclusiones.md)
+
+> **Guía de lectura — 29/10/2026:** este documento conserva el registro **cronológico** de avances, problemas y correcciones entre el 21 y el 29 de octubre de 2026. Las menciones a “pendiente”, direcciones `192.168.50.x`, configuraciones incompletas o pruebas todavía no realizadas se refieren **únicamente a la fecha de cada anotación**. No describen el estado final. Para la validación de entrega consulte [la matriz de resultados](05-pruebas-y-evidencias.md) y [la portada](../README.md).
+
+**Resumen de cierre:** R1 `10.25.13.1`, SW1 `10.25.13.2`, NPS `10.25.13.31`; autenticación SSH y privilegios 0/5/10 comprobados, accounting START/STOP de ambos equipos registrado por NPS, y autenticación AAA local en consola y AUX (sin prueba física de AUX). Configuraciones saneadas y 21 capturas auténticas publicadas. La demostración fue grabada; el enlace público de YouTube se añadirá cuando esté disponible.
+
+---
+
+## Registro original conservado
+
+### Inicio del registro — 21 de octubre de 2026
+
+Esta nota describe exclusivamente el estado del 21/10/2026. Las evidencias fotográficas fueron incorporadas posteriormente a la carpeta evidencias/.
 
 ## Confirmado por salidas de consola
 - Proxmox VE 8.4.21 en nodo HomeLab.
@@ -12,7 +24,7 @@ Este archivo separa hechos verificados de configuraciones previstas. Las evidenc
 - NIC temporal de administración Ethernet 2: 192.168.1.53 con gateway 192.168.1.1.
 - RDP TermService Running, 3389 Listening, regla RDP-Fedora habilitada y restringida a la IP indicada por el administrador.
 
-## Pendiente
+## Pendientes históricos del 21/10/2026
 - Confirmar fórmula de direccionamiento por matrícula y migrar red de laboratorio.
 - Eliminar o sustituir la segunda NIC antes de promover a DC para evitar DNS multihomed.
 - AD DS y DNS: instalar y configurar dominio de prueba empresa.test.
